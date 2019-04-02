@@ -1,0 +1,15 @@
+20				!iter, Iteration number
+4				!iCells, Number of cells to calculate
+1000			!densw, water density (kg/m3)
+3				!nAntRain, Number of antecedent rains
+12				!nIntervals, Number of duration intervals
+5				!nRainInc, Number of rain increments
+2.2				!MinAntRain, Minimum antecedent rain intensity (mm/d)
+0				!MinDuration, Minimum event duration (hr)
+0				!MinRain, Minimum event rain intensity (mm/hr)
+2.1				!MaxAntRain, Maximum antecedent rain intensity (mm/d)
+12				!MaxDuration, Maximum event duration (hr)
+100				!MaxRain, Maximum event rain intensity (mm/hr)
+10				!LevelsNumber, number of TRIGRS levels
+25				!mmax, Number of terms in the finite depth infiltration eq.
+1				!iSolution, 1 Iverson (2000), 2 Savage (TRIGRS v2)

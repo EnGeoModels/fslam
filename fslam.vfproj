@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<VisualStudioProject ProjectCreator="Intel Fortran" Keyword="Console Application" Version="11.0" ProjectIdGuid="{1B38C3E9-CFAC-400B-AF42-60604809776F}">
+	<Platforms>
+		<Platform Name="Win32"/></Platforms>
+	<Configurations>
+		<Configuration Name="Debug|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" SubSystem="subSystemConsole"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" OpenMP="OpenMPParallelCode"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="./PGPLOT/PGPLOT/Release" SubSystem="subSystemConsole"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
+	<Files>
+		<Filter Name="Header Files" Filter="fi;fd">
+		<File RelativePath=".\fslamGlobals_private.f90"/>
+		<File RelativePath=".\fslamGlobals_shared.f90"/>
+		<File RelativePath=".\fslamGlobals_structures.f90"/></Filter>
+		<Filter Name="data">
+		<File RelativePath=".\data\input.dat"/>
+		<File RelativePath=".\data\rainfall.asc"/>
+		<File RelativePath=".\data\soils.dat"/>
+		<File RelativePath=".\data\topo.asc"/>
+		<File RelativePath=".\data\zones.asc"/></Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
+		<File RelativePath=".\input.dat"/>
+		<File RelativePath=".\rainfall.asc"/>
+		<File RelativePath=".\soils.dat"/>
+		<File RelativePath=".\topo.asc"/>
+		<File RelativePath=".\zones.asc"/></Filter>
+		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
+		<Filter Name="erfc">
+		<File RelativePath=".\erfc\calerf.f"/>
+		<File RelativePath=".\erfc\derfc.f"/></Filter>
+		<Filter Name="GIS">
+		<File RelativePath=".\GIS\CumFlowCalc.F90"/>
+		<File RelativePath=".\GIS\FillSinksCalc.F90"/>
+		<File RelativePath=".\GIS\SlopeCalc.F90"/></Filter>
+		<Filter Name="IO">
+		<File RelativePath=".\IO\GridOut.F90"/>
+		<File RelativePath=".\IO\LecDat.F90"/>
+		<File RelativePath=".\IO\LecRainfall.F90"/>
+		<File RelativePath=".\IO\LecTopo.F90"/>
+		<File RelativePath=".\IO\LecZones.F90"/>
+		<File RelativePath=".\IO\LecZonesDat.F90"/>
+		<File RelativePath=".\IO\WriteGrid.F90"/></Filter>
+		<Filter Name="Stability models">
+		<File RelativePath=".\Stability models\FinalSaturation.F90"/>
+		<File RelativePath=".\Stability models\IncondSta.F90"/>
+		<File RelativePath=".\Stability models\IncondUnst.F90"/>
+		<File RelativePath=".\Stability models\InitialSaturation.F90"/></Filter>
+		<Filter Name="Stadistics">
+		<File RelativePath=".\Stadistics\GaussianParams.F90"/>
+		<File RelativePath=".\Stadistics\InverseNormal.F90"/>
+		<File RelativePath=".\Stadistics\NormalCDF.F90"/>
+		<File RelativePath=".\Stadistics\UpdateFsGaussian.F90"/></Filter>
+		<File RelativePath=".\fslam.f90"/></Filter></Files>
+	<Globals/></VisualStudioProject>
