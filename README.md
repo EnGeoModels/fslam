@@ -8,7 +8,7 @@ This model applies the infinite slope theory at regional scale to identify poten
 - Quantitative results
 
 # Background
-This tool is being developed within the [**SMuCPhy**](https://smucphy.upc.edu/) project, founded by the *Ministerio de Economia y Competitividad del Gobierno de España* and coordinated by [UPC BarclonaTECH](https://www.upc.edu)
+This tool is being developed within the [**SMuCPhy**](https://smucphy.upc.edu/) project, founded by the *Ministerio de Economia y Competitividad del Gobierno de España* and coordinated by [UPC BarcelonaTECH](https://www.upc.edu)
 
 ![Alt text](docs/logo_smuchphy.jpg?raw=true "SMuCPhy")
 
