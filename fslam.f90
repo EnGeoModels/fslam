@@ -1,7 +1,7 @@
-!  GITS-BDTP.f90 
+!  fslam.f90 
 !
 !  FUNCTIONS:
-!	GITS-BDTP      - Entry point of console application.
+!	fslam      - Entry point of console application.
 !
 !
 !	Leemos la topografia
@@ -15,9 +15,9 @@
 
 !****************************************************************************
 !
-!  PROGRAM: GITS-BDTP
+!  PROGRAM: fslam
 !
-!  PURPOSE:  Compute debris flow threshold using statistical aproach.
+!  PURPOSE:  Fast Shallow Landslide Assessment Model
 !
 !****************************************************************************
 
