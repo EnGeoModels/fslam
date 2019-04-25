@@ -46,16 +46,19 @@ subroutine FinalSaturation()
 !
 !           Check null
             IF (iZone .NE. nodata) THEN
+!
+!               Get porosity
+                Porosity = Soils(iZone)%porosity
 !            
-!			    Water table depth rising (rainfall in mm), 0.3 = porosity
-    		    h_wt(i,j) = h_wt(i,j) + rainfall(i,j) / 1000.d0 / 0.3d0
+!			    Water table depth rising (rainfall in mm)
+    		    h_wt(i,j) = h_wt(i,j) + rainfall(i,j) / 1000.d0 / Porosity
 !
             ELSE
                 h_wt(i,j) = nodata
             ENDIF
 !	
 !
-    enddo
+        enddo
 !
     enddo
 !
@@ -97,9 +100,9 @@ subroutine FinalSaturation()
 !
 !
 !	Log file
-    write(6,'("Computed probability of failure under antecedent rainfall")')
+    write(6,'("Computed probability of failure under event rainfall")')
 	open(unit=100,file='./res/Log.txt',access='append')
-	write(100,'("Computed probability of failure under antecedent rainfall")')
+	write(100,'("Computed probability of failure under event rainfall")')
 	close(100)
 !
 !

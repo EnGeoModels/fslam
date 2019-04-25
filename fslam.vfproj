@@ -24,22 +24,20 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
-		<Filter Name="Header Files" Filter="fi;fd">
-		<File RelativePath=".\fslamGlobals_private.f90"/>
-		<File RelativePath=".\fslamGlobals_shared.f90"/>
-		<File RelativePath=".\fslamGlobals_structures.f90"/></Filter>
 		<Filter Name="data">
 		<File RelativePath=".\data\input.dat"/>
+		<File RelativePath=".\data\p0.asc"/>
 		<File RelativePath=".\data\rainfall.asc"/>
 		<File RelativePath=".\data\soils.dat"/>
 		<File RelativePath=".\data\topo.asc"/>
 		<File RelativePath=".\data\zones.asc"/></Filter>
-		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
-		<File RelativePath=".\input.dat"/>
-		<File RelativePath=".\rainfall.asc"/>
-		<File RelativePath=".\soils.dat"/>
-		<File RelativePath=".\topo.asc"/>
-		<File RelativePath=".\zones.asc"/></Filter>
+		<Filter Name="Header Files" Filter="fi;fd">
+		<File RelativePath=".\fslamGlobals_private.f90"/>
+		<File RelativePath=".\fslamGlobals_shared.f90"/>
+		<File RelativePath=".\fslamGlobals_structures.f90"/></Filter>
+		<Filter Name="Infiltration">
+		<File RelativePath=".\Infiltration\Hydrology.F90"/></Filter>
+		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<Filter Name="erfc">
 		<File RelativePath=".\erfc\calerf.f"/>
@@ -51,6 +49,7 @@
 		<Filter Name="IO">
 		<File RelativePath=".\IO\GridOut.F90"/>
 		<File RelativePath=".\IO\LecDat.F90"/>
+		<File RelativePath=".\IO\LecP0.F90"/>
 		<File RelativePath=".\IO\LecRainfall.F90"/>
 		<File RelativePath=".\IO\LecTopo.F90"/>
 		<File RelativePath=".\IO\LecZones.F90"/>

@@ -23,6 +23,7 @@ module fslamGlobals_structures
 		REAL*8	:: hmax
 		REAL*8	:: densmin
 		REAL*8	:: densmax
+        REAL*8  :: porosity
     END TYPE SoilProperties
 !
 !

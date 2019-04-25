@@ -28,7 +28,7 @@ module fslamGlobals_shared
 	INTEGER :: nRainInc		!Number of rain increments
 	INTEGER :: LevelsNumber	!Number of TRIGRS levels
 	INTEGER :: mmax			!Number of terms in the finite depth infiltration eq.
-	INTEGER :: iSolution    !1 Iverson (2000), 2 Savage (TRIGRS v2)
+	INTEGER :: iOutput      !Create GIS results
 !
 !
 !   Booleanas
@@ -66,6 +66,7 @@ module fslamGlobals_shared
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: FSGrid			!Safety factor
 	REAL*8,   DIMENSION(:),		ALLOCATABLE :: AntRainVec		!Vector of antecedent rainfall intensity
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: Rainfall     !Event rain precipitation grid
+	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: p0Grid           !Runoff threshold
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: UncIns       !Probability of unconditionally instable cells
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: UncEst       !Probability of unconditionally stable cells
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_mu        !FS mean

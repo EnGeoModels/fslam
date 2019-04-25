@@ -60,7 +60,7 @@ subroutine LecDat()
 	read(100,*) LevelsNumber		!Number of TRIGRS levels
 	read(100,*) mmax				!Number of terms in the finite depth infiltration eq.
 !
-    read(100,*) iSolution           !1 Iverson (2000), 2 Savage (TRIGRS v2)
+    read(100,*) iOutput             !Create GIS results
 !
 !	Cerramos el fichero
     close(100)

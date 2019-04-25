@@ -31,7 +31,7 @@ subroutine InitialSaturation()
     AntRainInten = AntRainVec(1)
 !
 !   Units conversion
-    AntRainInten = AntRainInten / 1000.d0 / 24.d0 / 3600.d0
+    AntRainInten = AntRainInten
 !
 !
     write(6,'("Initiating antecedent rainfall ",F5.2," mm/day")') (1000.d0*24.d0*3600.d0*AntRainInten)

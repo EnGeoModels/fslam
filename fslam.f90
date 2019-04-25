@@ -47,7 +47,11 @@ program fslam
 !
 !	Read rainfall raster
 	write(6,'("Read rainfall...",/)')
-	call LecRainfall()      
+	call LecRainfall() 
+!
+!	Read rainfall raster
+	write(6,'("Read p0...",/)')    
+	call LecP0()
 !
 !	Backup initial DEM values
 	topo = topoIni    
@@ -66,8 +70,12 @@ program fslam
 	call CumFlowCalc()
 !
 !	Salida de resultados mediante GRID Arcview
-	write(6,'(/,"GIS Results output:",/)')
-	call GridOut()
+    if (iOutput .EQ. 1) THEN
+	    write(6,'(/,"GIS Results output:",/)')
+	    call GridOut()
+    else
+	    write(6,'(/,"No GIS Results output:",/)')
+    endif
 !
 !	Read input data
 	call LecDat()
@@ -83,6 +91,10 @@ program fslam
 !   Compute soil data Gaussian parameters
 	write(6,'("Compute soils data Gaussian...",/)')
     call GaussianParams()
+!
+!   Compute infiltration rainfall
+    write(6,'("Compute infiltrated rainfall...",/)')
+    call Hydrology()
 !
 !	Unconditionally instable cells
 	write(6,'("Inconditionally unstable cells calculation...",/)')

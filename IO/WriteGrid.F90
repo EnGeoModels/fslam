@@ -27,7 +27,7 @@ subroutine WriteGrid(GridData, Filename)
 !
 !
 !	Salida de resultados velocidad mediante GRID Arcview
-	write(6,'("Rater output",/)')
+	write(6,'("Raster output",/)')
 !   
 !	Escribimos resultados
 	open(unit=100,file=Filename,status='unknown',form='formatted')

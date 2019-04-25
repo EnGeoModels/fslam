@@ -2,9 +2,9 @@
 !
 !****************************************************************************
 !
-!  SUBROUTINE: LecTopo
+!  SUBROUTINE: LecP0
 !
-!  PURPOSE:  Read DEM.
+!  PURPOSE:  Read P0.
 !
 !****************************************************************************
 subroutine LecTopo()
@@ -49,6 +49,7 @@ subroutine LecTopo()
 	ALLOCATE(FSGrid(mx,my))         !FS value
     ALLOCATE(Rainfall(mx,my))       !Rainfall raster
     ALLOCATE(h_wt(mx,my))           !Rainfall raster
+    ALLOCATE(p0Grid(mx,my))         !p0 raster
 !
 !	Leemos la malla de terreno
     do j = 1, my

@@ -15,9 +15,11 @@ module fslamGlobals_private
 	REAL*8	:: Diff			!Pressure difusivity
 	REAL*8	:: Zmax			!Soil depth
 	REAL*8	:: phi			!Internal friction angle
-	REAL*8	:: Area			!Contributing area    
+	REAL*8	:: Area			!Contributing area
+    REAL*8  :: Porosity     !Soil porosity
+    REAL*8  :: p0           !Infiltration threshold
 !
-!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area)
+!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,p0)
 !
 !
 end module fslamGlobals_private

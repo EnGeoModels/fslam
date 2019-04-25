@@ -25,14 +25,14 @@ subroutine LecZonesDat()
 	open(100,file='./data/soils.dat',status='old',form='formatted',err=1000)
 !
 !	first & second line
-	read(100,*)	!index     kvmax     kvmin     khmax     khmin     Diffmax   Diffmin   Cmax      Cmin      phimax    phimin    hmax      hmin      densmax   densmin   
-	read(100,*) !          (m/s)     (m/s)     (m/s)     (m/s)     (m2/s)    (m2/s)    (kPa)     (kPa)     (degree)  (degree)  (m)       (m)       (kg/m3)   (kg/m3)
+	read(100,*)	!index     kvmax     kvmin     khmax     khmin     Diffmax   Diffmin   Cmax      Cmin      phimax    phimin    hmax      hmin      densmax   densmin    porosity
+	read(100,*) !          (m/s)     (m/s)     (m/s)     (m/s)     (m2/s)    (m2/s)    (kPa)     (kPa)     (degree)  (degree)  (m)       (m)       (kg/m3)   (kg/m3)    (m3/m3)
 !
 !
 	do i=1, numberZones
 !	
 !		Entrada de parametros de input.dat:
-		read(100,*) index,rkvmax,rkvmin,rkhmax,rkhmin,Diffmax,Diffmin,Cmax,Cmin,phimax,phimin,hmax,hmin,densmax,densmin
+		read(100,*) index,rkvmax,rkvmin,rkhmax,rkhmin,Diffmax,Diffmin,Cmax,Cmin,phimax,phimin,hmax,hmin,densmax,densmin,rporosity
 !
 !		Corregimos unidades
 		Soils(index)%kvmin = rkvmin
@@ -48,7 +48,8 @@ subroutine LecZonesDat()
 		Soils(index)%hmin = hmin
 		Soils(index)%hmax = hmax
 		Soils(index)%densmin = densmin
-		Soils(index)%densmax = densmax		
+		Soils(index)%densmax = densmax
+        Soils(index)%porosity = rporosity
 !
 	enddo
 !
