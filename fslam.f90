@@ -41,6 +41,9 @@ program fslam
 	write(6,'("*******************************************************",/)')
 !
 !
+!	Read input data
+	call LecDat()
+!
 !	Read topo
 	write(6,'("Read topo...",/)')
 	call LecTopo()  
@@ -76,9 +79,6 @@ program fslam
     else
 	    write(6,'(/,"No GIS Results output:",/)')
     endif
-!
-!	Read input data
-	call LecDat()
 !
 !	Zones read
 	write(6,'("Read zones...",/)')
