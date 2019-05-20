@@ -34,7 +34,7 @@ subroutine FinalSaturation()
 !
 !
 !   Parallel loop
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone,h_z) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	do j=1,my
@@ -96,7 +96,7 @@ subroutine FinalSaturation()
     !$OMP END PARALLEL
 !    
 !   Write results
-    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond.txt')
+    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond.asc')
 !
 !
 !	Log file

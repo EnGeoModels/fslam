@@ -43,7 +43,7 @@ subroutine InitialSaturation()
 
 !
 !   Parallel loop
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone,h_z) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	do j=1,my
@@ -63,13 +63,14 @@ subroutine InitialSaturation()
                 ksh = Gausskh(iZone)%mean
 !
 !			    Infinite slope stability
-			    h_z = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) ), 1.d0)
+			    h_z(i,j) = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) ), 1.d0)
 !
 !			    Water table depth
-    		    h_wt(i,j) = h_z * Zmax
+    		    h_wt(i,j) = h_z(i,j) * Zmax
 !
             ELSE
                 h_wt(i,j) = nodata
+                h_z(i,j) = nodata
             ENDIF
 !	
 !
@@ -79,7 +80,10 @@ subroutine InitialSaturation()
 !
     !$OMP END DO NOWAIT
     !$OMP END PARALLEL
-!			
+!
+!    
+!   Write results
+    CALL WriteGrid(h_z, './res/initial_h_z.asc')
 !    
 !   Update FS parameters
     CALL UpdateFsGaussian()
@@ -111,7 +115,7 @@ subroutine InitialSaturation()
     !$OMP END PARALLEL
 !    
 !   Write results
-    CALL WriteGrid(FSGrid, './res/PROB_failure_initial_cond.txt')
+    CALL WriteGrid(FSGrid, './res/PROB_failure_initial_cond.asc')
 !
 !
 !	Log file

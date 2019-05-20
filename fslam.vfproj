@@ -62,6 +62,7 @@
 		<File RelativePath=".\Stability models\InitialSaturation.F90"/></Filter>
 		<Filter Name="Stadistics">
 		<File RelativePath=".\Stadistics\GaussianParams.F90"/>
+		<File RelativePath=".\Stadistics\Histogram.F90"/>
 		<File RelativePath=".\Stadistics\InverseNormal.F90"/>
 		<File RelativePath=".\Stadistics\NormalCDF.F90"/>
 		<File RelativePath=".\Stadistics\UpdateFsGaussian.F90"/></Filter>

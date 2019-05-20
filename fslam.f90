@@ -112,6 +112,10 @@ program fslam
 	write(6,'("After event stability computation...",/)')
 	call FinalSaturation()
 !
+!   Compute histogram
+	write(6,'("Compute results histogram...",/)')
+	call Histogram()
+!
 !
 !
 !	Liberamos memoria
@@ -132,6 +136,8 @@ program fslam
 	DEALLOCATE(GaussDens)
 	DEALLOCATE(AntRainVec)
 	DEALLOCATE(Rainfall)
+    DEALLOCATE(h_z)
+    DEALLOCATE(h_wt)
 !
 !
 !

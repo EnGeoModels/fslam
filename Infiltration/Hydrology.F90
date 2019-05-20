@@ -63,7 +63,7 @@ subroutine Hydrology()
     !$OMP END PARALLEL
 !    
 !   Write results
-    CALL WriteGrid(Rainfall, './res/Effective_infiltration.txt')
+    CALL WriteGrid(Rainfall, './res/Effective_infiltration.asc')
 !
 !
 !	Log file

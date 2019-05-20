@@ -67,7 +67,7 @@ subroutine IncondUnst()
     !$OMP END PARALLEL
 !    
 !   Write results
-    CALL WriteGrid(UncIns, './res/PROB_uncond_unst.txt')
+    CALL WriteGrid(UncIns, './res/PROB_uncond_unst.asc')
 !
 !
 !	Log file

@@ -25,7 +25,7 @@ subroutine GridOut()
 	write(6,'("Topo output",/)')
 !   
 !	Escribimos resultados
-    fname = './res/topo.txt'
+    fname = './res/topo.asc'
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -54,7 +54,7 @@ subroutine GridOut()
 	write(6,'("Fill topo output",/)')   
 !
 !	Escribimos resultados
-    fname = './res/fill.txt'
+    fname = './res/fill.asc'
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -83,7 +83,7 @@ subroutine GridOut()
 	write(6,'("Slopes output",/)')
 !   
 !	Escribimos resultados
-    fname = './res/Slopes.txt'
+    fname = './res/Slopes.asc'
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -112,7 +112,7 @@ subroutine GridOut()
 	write(6,'("Flow accumulation output",/,/,/)')
 !   
 !	Escribimos resultados
-    fname = './res/cumflow.txt'
+    fname = './res/cumflow.asc'
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
