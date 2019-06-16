@@ -49,7 +49,7 @@ subroutine Hydrology()
                     initValue = Rainfall(i,j)
                     Rainfall(i,j) = Rainfall(i,j) - (Rainfall(i,j) - p0)**2.d0 / (Rainfall(i,j) + 4.d0 * p0)
                 ELSE
-                    Rainfall(i,j) = 0.d0
+                    Rainfall(i,j) = Rainfall(i,j)
                 ENDIF
 !
             ELSE
