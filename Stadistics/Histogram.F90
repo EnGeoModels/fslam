@@ -7,7 +7,7 @@
 !  PURPOSE:  Compute results histogram
 !
 !****************************************************************************
-subroutine Histogram()
+subroutine Histogram(Filename)
 !
 !
 !
@@ -23,10 +23,11 @@ subroutine Histogram()
 !   Variables
     integer :: i
     real*8  :: numNullCells
-    real*8  :: numNotNullCells    
+    real*8  :: numNotNullCells  
+    CHARACTER Filename*(*)
 !
 !   Output file
-    OPEN(20, FILE='./res/PROB_FAILURE_HIST.csv',ACTION="write",STATUS="replace",IOSTAT=istat)
+    OPEN(20,FILE=Filename,ACTION="write",STATUS="replace",IOSTAT=istat)
 !
 !   Control file
     IF (istat .ne. 0) THEN

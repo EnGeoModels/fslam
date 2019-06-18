@@ -18,8 +18,9 @@ module fslamGlobals_private
 	REAL*8	:: Area			!Contributing area
     REAL*8  :: Porosity     !Soil porosity
     REAL*8  :: p0           !Infiltration threshold
+    INTEGER :: iZone        !Cell soil type
 !
-!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,p0)
+!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,p0,iZone)
 !
 !
 end module fslamGlobals_private

@@ -25,7 +25,7 @@ subroutine UpdateFsGaussian()
     REAL*8  :: D		!D parameter
 !
 !   Main parallel loop
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone,WT,A,D) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,WT,A,D) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	DO j=1,my

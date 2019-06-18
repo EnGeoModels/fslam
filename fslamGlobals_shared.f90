@@ -29,7 +29,7 @@ module fslamGlobals_shared
 	INTEGER :: LevelsNumber	!Number of TRIGRS levels
 	INTEGER :: mmax			!Number of terms in the finite depth infiltration eq.
 	INTEGER :: iOutput      !Create GIS results
-    INTEGER :: istat         !iostat variable
+    INTEGER :: istat        !iostat variable
 !
 !
 !   Booleanas
@@ -50,6 +50,7 @@ module fslamGlobals_shared
 	REAL*8	:: Zmin			!Minimum Z for TRIGRS
 	REAL*8	:: AntRainInten	!Antecedent rainfall intensity
 	REAL*8	:: RainIntensity !Event rainfall intensity
+    REAL*8	:: climateChangeFactor  !Scaling CC factor for 24hr precipitation
 !
 !
 !   Arrays
@@ -73,6 +74,7 @@ module fslamGlobals_shared
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_mu        !FS mean
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_std       !FS Standard deviation
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: h_wt         !Water table    
+	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: Infiltration !Infiltration   
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: h_z          !Saturation degree
 !
 !
@@ -102,6 +104,13 @@ module fslamGlobals_shared
             REAL*8, INTENT(IN)   :: GridData(:,:)
             CHARACTER Filename*(*)
         END SUBROUTINE WriteGrid
+    END INTERFACE   
+!
+!
+    INTERFACE
+        SUBROUTINE Histogram(Filename)
+            CHARACTER Filename*(*)
+        END SUBROUTINE Histogram
     END INTERFACE   
 !   
 !

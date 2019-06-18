@@ -43,17 +43,16 @@ subroutine Hydrology()
 !
 !               Get porosity
                 p0 = p0Grid(i,j)
-!            
-!			    Infiltrated rainfall (SCS-CN model)
+!
+!			    Infiltrated rainfall (SCS-CN model)       
     		    IF (Rainfall(i,j) .GT. p0) THEN
-                    initValue = Rainfall(i,j)
-                    Rainfall(i,j) = Rainfall(i,j) - (Rainfall(i,j) - p0)**2.d0 / (Rainfall(i,j) + 4.d0 * p0)
+                    Infiltration(i,j) = Rainfall(i,j) - (Rainfall(i,j) - p0)**2.d0 / (Rainfall(i,j) + 4.d0 * p0)
                 ELSE
-                    Rainfall(i,j) = Rainfall(i,j)
+                    Infiltration(i,j) = Rainfall(i,j)
                 ENDIF
 !
             ELSE
-                Rainfall(i,j) = nodata
+                Infiltration(i,j) = nodata
             ENDIF
 !
         ENDDO
@@ -61,9 +60,6 @@ subroutine Hydrology()
 !    
     !$OMP END DO NOWAIT
     !$OMP END PARALLEL
-!    
-!   Write results
-    CALL WriteGrid(Rainfall, './res/Effective_infiltration.asc')
 !
 !
 !	Log file

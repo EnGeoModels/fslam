@@ -48,7 +48,8 @@ subroutine LecTopo()
 	ALLOCATE(FS_std(mx,my))			!FS Standard deviation	
 	ALLOCATE(FSGrid(mx,my))         !FS value
     ALLOCATE(Rainfall(mx,my))       !Rainfall raster
-    ALLOCATE(h_wt(mx,my))           !Rainfall raster
+    ALLOCATE(h_wt(mx,my))           !Water table raster
+    ALLOCATE(Infiltration(mx,my))     !Rainfall increment due to climate change
     ALLOCATE(p0Grid(mx,my))         !p0 raster
     ALLOCATE(h_z(mx,my))            !Saturation degree
 !

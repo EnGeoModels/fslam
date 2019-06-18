@@ -29,7 +29,7 @@ subroutine IncondSta()
 !
 !
 !   Initial condition saturated
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	DO j=1,my

@@ -95,6 +95,9 @@ program fslam
 !   Compute infiltration rainfall
     write(6,'("Compute infiltrated rainfall...",/)')
     call Hydrology()
+!    
+!   Write infiltration results
+    CALL WriteGrid(Infiltration, './res/Infiltration.asc')
 !
 !	Unconditionally instable cells
 	write(6,'("Inconditionally unstable cells calculation...",/)')
@@ -104,18 +107,55 @@ program fslam
 	write(6,'("Inconditionally stable cells calculation...",/)')
 	call IncondSta()
 !
-!   Postevent rainfall failure probability
+!   Antecedent rainfall failure probability
 	write(6,'("Antecent rainfall condition...",/)')
 	call InitialSaturation()
+!    
+!   Write initial saturation degree results
+    CALL WriteGrid(h_z, './res/initial_h_z.asc')
+!    
+!   Write probability of failure under antecedent rainfall
+    CALL WriteGrid(FSGrid, './res/PROB_failure_initial_cond.asc')
 !
-!   Antecedemt rainfall failure probability
+!   Postevent failure probability
 	write(6,'("After event stability computation...",/)')
 	call FinalSaturation()
+!    
+!   Write post event results
+    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond.asc')
 !
 !   Compute histogram
 	write(6,'("Compute results histogram...",/)')
-	call Histogram()
+	call Histogram('./res/PROB_FAILURE_HIST.csv')
 !
+!
+!   -----------------------------------------------------
+!   Apply climate change factor to the 24hr precipitation
+!   -----------------------------------------------------
+    write(6,'("Apply climate change rainfall factor...",/)')
+    Rainfall = climateChangeFactor * Rainfall
+!
+!
+!   Recompute initial watertable position
+	call InitialSaturation()
+!
+!   Compute infiltration rainfall for the climate change
+    write(6,'("Compute infiltrated rainfall considering climate change...",/)')
+    call Hydrology()
+!    
+!   Write results
+    CALL WriteGrid(Infiltration, './res/Infiltration_CC.asc')
+!
+!   Postevent failure probability considering climate change
+	write(6,'("After event stability computation including climate change...",/)')
+	call FinalSaturation()
+!    
+!   Write post event results
+    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond_CC.asc')
+!
+!   Compute histogram
+	write(6,'("Compute results histogram for climate change...",/)')
+	call Histogram('./res/PROB_FAILURE_HIST_CC.csv')    
 !
 !
 !	Liberamos memoria
@@ -138,10 +178,9 @@ program fslam
 	DEALLOCATE(Rainfall)
     DEALLOCATE(h_z)
     DEALLOCATE(h_wt)
+    DEALLOCATE(Infiltration)
 !
 !
 !
 end program fslam
-!
-!
-!
+

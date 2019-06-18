@@ -34,12 +34,11 @@ subroutine FinalSaturation()
 !
 !
 !   Parallel loop
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	do j=1,my
 		do i=1,mx
-!
 !
 !           Static cell values
             iZone = zones(i,j)
@@ -51,7 +50,7 @@ subroutine FinalSaturation()
                 Porosity = Soils(iZone)%porosity
 !            
 !			    Water table depth rising (rainfall in mm)
-    		    h_wt(i,j) = h_wt(i,j) + rainfall(i,j) / 1000.d0 / Porosity
+    		    h_wt(i,j) = h_wt(i,j) + Infiltration(i,j) / 1000.d0 / Porosity
 !
             ELSE
                 h_wt(i,j) = nodata
@@ -94,9 +93,6 @@ subroutine FinalSaturation()
 !    
     !$OMP END DO NOWAIT
     !$OMP END PARALLEL
-!    
-!   Write results
-    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond.asc')
 !
 !
 !	Log file

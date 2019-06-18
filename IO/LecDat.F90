@@ -62,6 +62,8 @@ subroutine LecDat()
 !
     read(100,*) iOutput             !Create GIS results
 !
+    read(100,*) climateChangeFactor !Read climate change factor for 24hr precipitation
+!
 !	Cerramos el fichero
     close(100)
 !

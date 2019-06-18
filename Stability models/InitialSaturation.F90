@@ -38,12 +38,10 @@ subroutine InitialSaturation()
 	open(unit=100,file='./res/Log.txt',access='append')
 	write(100,'("Initiating antecedent rainfall ",F5.2," mm/day")') (1000.d0*24.d0*3600.d0*AntRainInten)
 	close(100)    
-    
-    
-
+!
 !
 !   Parallel loop
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,iZone) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	do j=1,my
@@ -82,9 +80,6 @@ subroutine InitialSaturation()
     !$OMP END PARALLEL
 !
 !    
-!   Write results
-    CALL WriteGrid(h_z, './res/initial_h_z.asc')
-!    
 !   Update FS parameters
     CALL UpdateFsGaussian()
     
@@ -113,9 +108,6 @@ subroutine InitialSaturation()
 !    
     !$OMP END DO NOWAIT
     !$OMP END PARALLEL
-!    
-!   Write results
-    CALL WriteGrid(FSGrid, './res/PROB_failure_initial_cond.asc')
 !
 !
 !	Log file
