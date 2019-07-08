@@ -47,7 +47,7 @@ subroutine FinalSaturation()
             IF (iZone .NE. nodata) THEN
 !
 !               Get porosity
-                Porosity = Soils(iZone)%porosity
+                Porosity = GaussPor(iZone)%mean
 !            
 !			    Water table depth rising (rainfall in mm)
     		    h_wt(i,j) = h_wt(i,j) + Infiltration(i,j) / 1000.d0 / Porosity

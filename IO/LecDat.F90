@@ -1,3 +1,14 @@
+!****************************************************************************
+!
+!  fslam: Fast Shallow Landslide Assessment Model
+!
+!  Code developed in the  SMuCPhy project, founded by the Ministerio de 
+!  Economia y Competitividad del Gobierno de España and coordinated by UPC
+!  BarcelonaTECH
+!
+!  Coordinated by Department of Civil and Environmental Engineering
+!
+!****************************************************************************
 !
 !
 !****************************************************************************
@@ -63,6 +74,8 @@ subroutine LecDat()
     read(100,*) iOutput             !Create GIS results
 !
     read(100,*) climateChangeFactor !Read climate change factor for 24hr precipitation
+!
+    read(100,*) iStochastic         !Select between analytic probability or fully stochastic soil properties
 !
 !	Cerramos el fichero
     close(100)

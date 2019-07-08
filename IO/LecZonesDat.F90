@@ -1,3 +1,14 @@
+!****************************************************************************
+!
+!  fslam: Fast Shallow Landslide Assessment Model
+!
+!  Code developed in the  SMuCPhy project, founded by the Ministerio de 
+!  Economia y Competitividad del Gobierno de España and coordinated by UPC
+!  BarcelonaTECH
+!
+!  Coordinated by Department of Civil and Environmental Engineering
+!
+!****************************************************************************
 !
 !
 !****************************************************************************
@@ -25,14 +36,14 @@ subroutine LecZonesDat()
 	open(100,file='./data/soils.dat',status='old',form='formatted',err=1000)
 !
 !	first & second line
-	read(100,*)	!index     kvmax     kvmin     khmax     khmin     Diffmax   Diffmin   Cmax      Cmin      phimax    phimin    hmax      hmin      densmax   densmin    porosity
-	read(100,*) !          (m/s)     (m/s)     (m/s)     (m/s)     (m2/s)    (m2/s)    (kPa)     (kPa)     (degree)  (degree)  (m)       (m)       (kg/m3)   (kg/m3)    (m3/m3)
+	read(100,*)	!index     kvmax     kvmin     khmax     khmin     Diffmax   Diffmin   Cmax      Cmin      phimax    phimin    hmax      hmin      densmax   densmin    porositymax porositymin
+	read(100,*) !          (m/s)     (m/s)     (m/s)     (m/s)     (m2/s)    (m2/s)    (kPa)     (kPa)     (degree)  (degree)  (m)       (m)       (kg/m3)   (kg/m3)    (m3/m3)     (m3/m3)
 !
 !
 	do i=1, numberZones
 !	
 !		Entrada de parametros de input.dat:
-		read(100,*) index,rkvmax,rkvmin,rkhmax,rkhmin,Diffmax,Diffmin,Cmax,Cmin,phimax,phimin,hmax,hmin,densmax,densmin,rporosity
+		read(100,*) index,rkvmax,rkvmin,rkhmax,rkhmin,Diffmax,Diffmin,Cmax,Cmin,phimax,phimin,zmax,zmin,densmax,densmin,rporositymax,rporositymin
 !
 !		Corregimos unidades
 		Soils(index)%kvmin = rkvmin
@@ -45,11 +56,12 @@ subroutine LecZonesDat()
 		Soils(index)%Cmax = Cmax * 1000.d0
 		Soils(index)%phimin = phimin * R_D
 		Soils(index)%phimax = phimax * R_D
-		Soils(index)%hmin = hmin
-		Soils(index)%hmax = hmax
+		Soils(index)%zmin = zmin
+		Soils(index)%zmax = zmax
 		Soils(index)%densmin = densmin
 		Soils(index)%densmax = densmax
-        Soils(index)%porosity = rporosity
+        Soils(index)%porositymin = rporositymin
+        Soils(index)%porositymax = rporositymax
 !
 	enddo
 !

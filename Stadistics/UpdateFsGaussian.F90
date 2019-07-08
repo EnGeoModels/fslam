@@ -1,3 +1,14 @@
+!****************************************************************************
+!
+!  fslam: Fast Shallow Landslide Assessment Model
+!
+!  Code developed in the  SMuCPhy project, founded by the Ministerio de 
+!  Economia y Competitividad del Gobierno de España and coordinated by UPC
+!  BarcelonaTECH
+!
+!  Coordinated by Department of Civil and Environmental Engineering
+!
+!****************************************************************************
 !
 !
 !****************************************************************************
@@ -38,7 +49,7 @@ subroutine UpdateFsGaussian()
             IF (iZone .NE. nodata) THEN
 !            
 			    Slope = slopeGrid(i,j)
-                Zmax = Gaussh(iZone)%mean
+                Zmax = Gaussz(iZone)%mean
                 denss = GaussDens(iZone)%mean
                 WT = h_wt(i,j)
 !

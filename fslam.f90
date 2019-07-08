@@ -1,3 +1,15 @@
+!****************************************************************************
+!
+!  fslam: Fast Shallow Landslide Assessment Model
+!
+!  Code developed in the  SMuCPhy project, founded by the Ministerio de 
+!  Economia y Competitividad del Gobierno de España and coordinated by UPC
+!  BarcelonaTECH
+!
+!  Coordinated by Department of Civil and Environmental Engineering
+!
+!****************************************************************************
+!
 !  fslam.f90 
 !
 !  FUNCTIONS:
@@ -92,6 +104,12 @@ program fslam
 	write(6,'("Compute soils data Gaussian...",/)')
     call GaussianParams()
 !
+!   Compute stability matrix
+    if (iStochastic .EQ. 1) then
+	    write(6,'("Compute stability matrix...",/)')
+        call StabilityMatrixConstruction()
+    endif
+!
 !   Compute infiltration rainfall
     write(6,'("Compute infiltrated rainfall...",/)')
     call Hydrology()
@@ -171,7 +189,7 @@ program fslam
 	DEALLOCATE(Gausskh)
 	DEALLOCATE(GaussC)
 	DEALLOCATE(Gaussphi)
-	DEALLOCATE(Gaussh)
+	DEALLOCATE(Gaussz)
 	DEALLOCATE(GaussDiff)
 	DEALLOCATE(GaussDens)
 	DEALLOCATE(AntRainVec)
@@ -179,6 +197,23 @@ program fslam
     DEALLOCATE(h_z)
     DEALLOCATE(h_wt)
     DEALLOCATE(Infiltration)
+!
+!   Stochastic model
+    if (iStochastic .EQ. 1) then
+        DEALLOCATE(SoilsVariablesMatrix)
+        DEALLOCATE(SoilsParameterMatrix) 
+        DEALLOCATE(VectParams)
+        DEALLOCATE(VectVar)
+        DEALLOCATE(AuxMat)
+        DEALLOCATE(AuxSF)
+        DEALLOCATE(AuxProb)
+        DEALLOCATE(C_term)
+        DEALLOCATE(aux_term)
+        DEALLOCATE(sum_term)
+        DEALLOCATE(inf_term)
+        DEALLOCATE(tan_term)
+        DEALLOCATE(por_term)              
+    endif
 !
 !
 !

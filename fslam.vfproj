@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <VisualStudioProject ProjectCreator="Intel Fortran" Keyword="Console Application" Version="11.0" ProjectIdGuid="{1B38C3E9-CFAC-400B-AF42-60604809776F}">
 	<Platforms>
-		<Platform Name="Win32"/></Platforms>
+		<Platform Name="Win32"/>
+		<Platform Name="x64"/></Platforms>
 	<Configurations>
 		<Configuration Name="Debug|Win32">
 				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
@@ -14,10 +15,30 @@
 				<Tool Name="VFPostBuildEventTool"/>
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
 		<Configuration Name="Release|Win32">
-				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" Parallelization="true" OpenMP="OpenMPParallelCode"/>
-				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="./PGPLOT/PGPLOT/Release" SubSystem="subSystemConsole"/>
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/heap-arrays" SuppressStartupBanner="true" Parallelization="true" OpenMP="OpenMPParallelCode"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="./PGPLOT/PGPLOT/Release" SubSystem="subSystemConsole" StackReserveSize="124000000"/>
 				<Tool Name="VFResourceCompilerTool"/>
 				<Tool Name="VFMidlTool" SuppressStartupBanner="true"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Debug|x64">
+				<Tool Name="VFFortranCompilerTool" SuppressStartupBanner="true" DebugInformationFormat="debugEnabled" Optimization="optimizeDisabled" WarnInterfaces="true" Traceback="true" BoundsCheck="true" RuntimeLibrary="rtMultiThreadedDebug"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" GenerateDebugInformation="true" SubSystem="subSystemConsole"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
+				<Tool Name="VFCustomBuildTool"/>
+				<Tool Name="VFPreLinkEventTool"/>
+				<Tool Name="VFPreBuildEventTool"/>
+				<Tool Name="VFPostBuildEventTool"/>
+				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration>
+		<Configuration Name="Release|x64">
+				<Tool Name="VFFortranCompilerTool" AdditionalOptions="/heap-arrays" SuppressStartupBanner="true" Parallelization="true" OpenMP="OpenMPParallelCode"/>
+				<Tool Name="VFLinkerTool" LinkIncremental="linkIncrementalNo" SuppressStartupBanner="true" AdditionalLibraryDirectories="./PGPLOT/PGPLOT/Release" SubSystem="subSystemConsole" StackReserveSize="124000000"/>
+				<Tool Name="VFResourceCompilerTool"/>
+				<Tool Name="VFMidlTool" SuppressStartupBanner="true" TargetEnvironment="midlTargetAMD64"/>
 				<Tool Name="VFCustomBuildTool"/>
 				<Tool Name="VFPreLinkEventTool"/>
 				<Tool Name="VFPreBuildEventTool"/>
@@ -59,9 +80,14 @@
 		<File RelativePath=".\Stability models\FinalSaturation.F90"/>
 		<File RelativePath=".\Stability models\IncondSta.F90"/>
 		<File RelativePath=".\Stability models\IncondUnst.F90"/>
-		<File RelativePath=".\Stability models\InitialSaturation.F90"/></Filter>
+		<File RelativePath=".\Stability models\InitialSaturation.F90"/>
+		<File RelativePath=".\Stability models\StabilityMatrixConstruction.F90">
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" NullPointerCheck="true" BoundsCheck="true"/></FileConfiguration></File></Filter>
 		<Filter Name="Stadistics">
-		<File RelativePath=".\Stadistics\GaussianParams.F90"/>
+		<File RelativePath=".\Stadistics\GaussianParams.F90">
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" BoundsCheck="true"/></FileConfiguration></File>
 		<File RelativePath=".\Stadistics\Histogram.F90"/>
 		<File RelativePath=".\Stadistics\InverseNormal.F90"/>
 		<File RelativePath=".\Stadistics\NormalCDF.F90"/>

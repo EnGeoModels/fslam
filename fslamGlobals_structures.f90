@@ -1,10 +1,43 @@
 !****************************************************************************
+!
+!  fslam: Fast Shallow Landslide Assessment Model
+!
+!  Code developed in the  SMuCPhy project, founded by the Ministerio de 
+!  Economia y Competitividad del Gobierno de España and coordinated by UPC
+!  BarcelonaTECH
+!
+!  Coordinated by Department of Civil and Environmental Engineering
+!
+!****************************************************************************
+!
+!
+!****************************************************************************
 !  Global data, parameters, and structures 
 !****************************************************************************
 
 module fslamGlobals_structures
 !
 	implicit double precision (a-h,o-z)
+!
+!
+!
+!	Parameters of auxiliar data
+	REAL*8, PARAMETER :: PI		 = 3.1415926d0
+	REAL*8, PARAMETER :: D_R	 = 57.295780d0
+	REAL*8, PARAMETER :: R_D	 = 0.0174532d0
+	REAL*8, PARAMETER :: grav    = 9.81d0
+    INTEGER,PARAMETER :: nVariables  = 50      !Number of intervals in VariablesMatrix variables
+    
+!***********************************************
+    
+    
+    INTEGER,PARAMETER :: nParams = 10           !Number of intervals in ParameterMatrix parameters
+    REAL*8, PARAMETER :: a_b_min = 0.d0         !Minimum area to cell width ratio
+    REAL*8, PARAMETER :: a_b_max = 7000.d0      !Maximum area to cell width ratio
+    REAL*8, PARAMETER :: slope_min = 0.d0       !Minimum slope
+    REAL*8, PARAMETER :: slope_max = 1.570795d0 !Maximum slope
+    REAL*8, PARAMETER :: qe_min = 0.d0 / 1000.d0         !Minimum event infiltration (m)
+    REAL*8, PARAMETER :: qe_max = 350.d0 / 1000.d0       !Maximum event infiltration (m)
 !
 !
 !	Structures
@@ -23,8 +56,31 @@ module fslamGlobals_structures
 		REAL*8	:: hmax
 		REAL*8	:: densmin
 		REAL*8	:: densmax
-        REAL*8  :: porosity
+        REAL*8  :: porositymin
+        REAL*8  :: porositymax
+        REAL*8  :: zmin
+        REAL*8  :: zmax
     END TYPE SoilProperties
+!
+!
+!	Structures
+    TYPE :: VariablesMatrix
+       	REAL*8, DIMENSION(nVariables) :: Slope			                !Slope angle (rad)
+    	REAL*8, DIMENSION(nVariables) :: a_b				            !Area to cell size ratio
+    	REAL*8, DIMENSION(nVariables) :: Infiltration	                !Infiltration
+        REAL*8, DIMENSION(nVariables,nVariables,nVariables) :: SF       !SF failure matrix
+        REAL*8, DIMENSION(nVariables,nVariables,nVariables) :: Prob     !Probability of failure matrix
+    END TYPE VariablesMatrix
+!
+!
+!	Structures
+    TYPE :: ParameterMatrix
+    	REAL*8, DIMENSION(nParams) :: kh            !Hydraulic conductivity
+       	REAL*8, DIMENSION(nParams) :: z             !Soil depth
+    	REAL*8, DIMENSION(nParams) :: C	            !Cohesion
+    	REAL*8, DIMENSION(nParams) :: phi           !Internal friction angle
+       	REAL*8, DIMENSION(nParams) :: porosity      !Porosity
+    END TYPE ParameterMatrix
 !
 !
 !	Structures
@@ -42,13 +98,6 @@ module fslamGlobals_structures
 		REAL*8	:: stdde
     END TYPE GaussianProperties
 !
-!
-!
-!	Parameters of auxiliar data
-	REAL*8, PARAMETER :: PI		= 3.1415926d0
-	REAL*8, PARAMETER :: D_R	= 57.295780d0
-	REAL*8, PARAMETER :: R_D	= 0.0174532d0
-	REAL*8, PARAMETER :: grav		= 9.81d0
 !
 !
 end module fslamGlobals_structures

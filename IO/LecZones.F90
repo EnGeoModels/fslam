@@ -1,3 +1,14 @@
+!****************************************************************************
+!
+!  fslam: Fast Shallow Landslide Assessment Model
+!
+!  Code developed in the  SMuCPhy project, founded by the Ministerio de 
+!  Economia y Competitividad del Gobierno de España and coordinated by UPC
+!  BarcelonaTECH
+!
+!  Coordinated by Department of Civil and Environmental Engineering
+!
+!****************************************************************************
 !
 !
 !****************************************************************************
@@ -63,10 +74,28 @@ subroutine LecZones()
 	ALLOCATE(Gausskv(numberZones))
 	ALLOCATE(GaussC(numberZones))
 	ALLOCATE(Gaussphi(numberZones))
-	ALLOCATE(Gaussh(numberZones))
+	ALLOCATE(Gaussz(numberZones))
 	ALLOCATE(GaussDiff(numberZones))
 	ALLOCATE(GaussDens(numberZones))
+    ALLOCATE(GaussPor(numberZones))
 	ALLOCATE(Unconditional(iCells,iter))
+!
+!   Stochastic model
+    if (iStochastic .EQ. 1) then
+        ALLOCATE(SoilsVariablesMatrix(numberZones))
+        ALLOCATE(SoilsParameterMatrix(numberZones)) 
+        ALLOCATE(VectParams(nParams))
+        ALLOCATE(VectVar(nVariables))
+        ALLOCATE(AuxMat(numberZones,nVariables*nVariables*nVariables,4))
+        ALLOCATE(AuxSF(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(AuxProb(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(C_term(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(aux_term(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(sum_term(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(inf_term(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(tan_term(numberZones,nVariables*nVariables*nVariables))
+        ALLOCATE(por_term(numberZones,nVariables*nVariables*nVariables))              
+    endif
 !
 !	Initialize cells stability condition
 	Unconditional = .FALSE.
