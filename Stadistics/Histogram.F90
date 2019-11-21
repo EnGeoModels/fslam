@@ -10,8 +10,6 @@
 subroutine Histogram(Filename)
 !
 !
-!
-!
 !	Variables globales
 	use fslamGlobals_structures
 	use fslamGlobals_shared
@@ -40,15 +38,15 @@ subroutine Histogram(Filename)
     WRITE(20,'("value,cdf")')
 !
 !   Not NULL cells
-    numNullCells = COUNT(FSGrid .EQ. nodata)
+    numNullCells = COUNT(PFGrid .EQ. nodata)
     numNotNullCells = my*mx - numNullCells
 !
 !   Stable cells
-    write(20, '(f10.3,",",f10.4)' ) 0.d0, (COUNT( FSGrid <= 0.d0 ) - numNullCells) / numNotNullCells
+    write(20, '(f10.3,",",f10.4)' ) 0.d0, (COUNT( PFGrid <= 0.d0 ) - numNullCells) / numNotNullCells
 !
 !   Main loop
     do i = 1,100
-        write(20, '(f10.3,",",f10.4)' ) DBLE(i)/100.d0, (COUNT( FSGrid <= (DBLE(i)/100.d0) ) - numNullCells) / numNotNullCells
+        write(20, '(f10.3,",",f10.4)' ) DBLE(i)/100.d0, (COUNT( PFGrid <= (DBLE(i)/100.d0) ) - numNullCells) / numNotNullCells
     enddo
 !
     close(20)

@@ -97,10 +97,10 @@ subroutine InitialSaturation()
                 normMean = (1 - FS_mu(i,j)) / FS_std(i,j)
 !
 !               Compute cumulative probability for FS = 1
-                FSGrid(i,j) = NormalCDF(normMean)
-!
+                PFGrid(i,j) = NormalCDF(normMean)
+!                
             ELSE
-                FSGrid(i,j) = nodata
+                PFGrid(i,j) = nodata
             ENDIF
 !
         enddo

@@ -115,14 +115,16 @@ program fslam
     CALL WriteGrid(h_z, './res/initial_h_z.asc')
 !    
 !   Write probability of failure under antecedent rainfall
-    CALL WriteGrid(FSGrid, './res/PROB_failure_initial_cond.asc')
+    CALL WriteGrid(PFGrid, './res/PROB_failure_initial_cond.asc')
+    CALL WriteGrid(FS_mu, './res/SF_initial_cond.asc')    
 !
 !   Postevent failure probability
 	write(6,'("After event stability computation...",/)')
 	call FinalSaturation()
 !    
 !   Write post event results
-    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond.asc')
+    CALL WriteGrid(PFGrid, './res/PROB_failure_final_cond.asc')
+    CALL WriteGrid(FS_mu, './res/SF_final_cond.asc')
 !
 !   Compute histogram
 	write(6,'("Compute results histogram...",/)')
@@ -151,7 +153,24 @@ program fslam
 	call FinalSaturation()
 !    
 !   Write post event results
-    CALL WriteGrid(FSGrid, './res/PROB_failure_final_cond_CC.asc')
+    CALL WriteGrid(PFGrid, './res/PROB_failure_final_cond_CC.asc')
+    CALL WriteGrid(FS_mu, './res/SF_final_cond_CC.asc')
+!
+!   ---------------------
+!   For research purposes
+!   ---------------------
+    IF (iResearch .EQ. 1) THEN
+!
+!       Principal components of the safety factor
+	    write(6,'("Divide FS in its shape functions...",/)')
+	    call FsComponents()    
+!    
+!       Write FS components results
+        CALL WriteGrid(FS_C1, './res/SF_static.asc')
+        CALL WriteGrid(FS_C2, './res/SF_antecedent.asc')
+        CALL WriteGrid(FS_C3, './res/SF_event.asc')
+!
+    END IF
 !
 !   Compute histogram
 	write(6,'("Compute results histogram for climate change...",/)')
@@ -165,8 +184,8 @@ program fslam
 	DEALLOCATE(auxcumflow)
 	DEALLOCATE(zones)
 	DEALLOCATE(slopeGrid)
-	DEALLOCATE(FSGrid)
-	DEALLOCATE(Soils)
+	DEALLOCATE(PFGrid)
+    DEALLOCATE(Soils)
 	DEALLOCATE(Gausskv)
 	DEALLOCATE(Gausskh)
 	DEALLOCATE(GaussC)
@@ -179,6 +198,9 @@ program fslam
     DEALLOCATE(h_z)
     DEALLOCATE(h_wt)
     DEALLOCATE(Infiltration)
+	DEALLOCATE(FS_C1)
+	DEALLOCATE(FS_C2)
+	DEALLOCATE(FS_C3)
 !
 !
 !

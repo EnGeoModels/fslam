@@ -64,6 +64,8 @@ subroutine LecDat()
 !
     read(100,*) climateChangeFactor !Read climate change factor for 24hr precipitation
 !
+    read(100,*) iResearch           !Output all results (safety factor and probability of failure)
+!
 !	Cerramos el fichero
     close(100)
 !

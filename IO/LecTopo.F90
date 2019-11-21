@@ -46,12 +46,16 @@ subroutine LecTopo()
 	ALLOCATE(UncEst(mx,my))			!Unconditionally stable	
 	ALLOCATE(FS_mu(mx,my))			!FS mean	
 	ALLOCATE(FS_std(mx,my))			!FS Standard deviation	
-	ALLOCATE(FSGrid(mx,my))         !FS value
+	ALLOCATE(PFGrid(mx,my))         !Probability of failure value
     ALLOCATE(Rainfall(mx,my))       !Rainfall raster
     ALLOCATE(h_wt(mx,my))           !Water table raster
     ALLOCATE(Infiltration(mx,my))     !Rainfall increment due to climate change
     ALLOCATE(p0Grid(mx,my))         !p0 raster
     ALLOCATE(h_z(mx,my))            !Saturation degree
+	ALLOCATE(FS_C1(mx,my))			!FS first component	
+	ALLOCATE(FS_C2(mx,my))			!FS second component
+	ALLOCATE(FS_C3(mx,my))			!FS third component
+!
 !
 !	Leemos la malla de terreno
     do j = 1, my

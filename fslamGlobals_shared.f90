@@ -30,6 +30,7 @@ module fslamGlobals_shared
 	INTEGER :: mmax			!Number of terms in the finite depth infiltration eq.
 	INTEGER :: iOutput      !Create GIS results
     INTEGER :: istat        !iostat variable
+    INTEGER :: iResearch    !Output all the results (safety factor and probability of failure)
 !
 !
 !   Booleanas
@@ -59,13 +60,12 @@ module fslamGlobals_shared
 	INTEGER,  DIMENSION(:,:),   ALLOCATABLE :: zones			!Zones delimitation grid
 !
 !   Reales
-
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: topo				!Corrected topo grid
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: topoIni			!Topo grid
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: slopeGrid		!Slopes grid
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: cumflow			!Cumflow grid
 	REAL*8,   DIMENSION(:,:,:),	ALLOCATABLE :: auxcumflow		!Auxiliar grid
-	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: FSGrid			!Safety factor
+    REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: PFGrid			!Probability of failure
 	REAL*8,   DIMENSION(:),		ALLOCATABLE :: AntRainVec		!Vector of antecedent rainfall intensity
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: Rainfall     !Event rain precipitation grid
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: p0Grid       !Runoff threshold
@@ -76,6 +76,9 @@ module fslamGlobals_shared
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: h_wt         !Water table    
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: Infiltration !Infiltration   
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: h_z          !Saturation degree
+	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_C1        !FS first component
+	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_C2        !FS second component
+	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_C3        !FS third component    
 !
 !
 !	Booleans
