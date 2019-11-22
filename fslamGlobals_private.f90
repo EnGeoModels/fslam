@@ -17,10 +17,13 @@ module fslamGlobals_private
 	REAL*8	:: phi			!Internal friction angle
 	REAL*8	:: Area			!Contributing area
     REAL*8  :: Porosity     !Soil porosity
-    REAL*8  :: p0           !Infiltration threshold
+    REAL*8  :: AntRainInten !Antecedent rainfall intensity
+    REAL*8  :: CN           !Curve number    
+    REAL*8  :: Ia           !Infiltration threshold
     INTEGER :: iZone        !Cell soil type
+    INTEGER :: iLandUse     !Landuse type    
 !
-!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,p0,iZone)
+!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,CN,Ia,iZone,AntRainInten,iLandUse)
 !
 !
 end module fslamGlobals_private

@@ -35,18 +35,18 @@ subroutine Hydrology()
 	DO j=1,my
 		DO i=1,mx
 !
-!           Static cell values
-            iZone = zones(i,j)
+!           Get Curve number
+            CN = CNGrid(i,j)
 !
 !           Check null
-            IF (iZone .NE. nodata) THEN
+            IF (CN .NE. nodata) THEN
 !
-!               Get porosity
-                p0 = p0Grid(i,j)
+!               Convert CN into Ia (Mockus)
+                Ia =  200.d0 / DMAX1(CN, 1.d0) - 2.d0
 !
 !			    Infiltrated rainfall (SCS-CN model)       
-    		    IF (Rainfall(i,j) .GT. p0) THEN
-                    Infiltration(i,j) = Rainfall(i,j) - (Rainfall(i,j) - p0)**2.d0 / (Rainfall(i,j) + 4.d0 * p0)
+    		    IF (Rainfall(i,j) .GT. Ia) THEN
+                    Infiltration(i,j) = Rainfall(i,j) - (Rainfall(i,j) - Ia)**2.d0 / (Rainfall(i,j) + 4.d0 * Ia)
                 ELSE
                     Infiltration(i,j) = Rainfall(i,j)
                 ENDIF

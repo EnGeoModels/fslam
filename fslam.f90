@@ -4,13 +4,16 @@
 !	fslam      - Entry point of console application.
 !
 !
-!	Leemos la topografia
-!	Leemos el fichero de datos
-!	Leemos zonas
-!	Leemos propiedades suelo zonas
+!	Read dem
+!	Read data input
+!	Read soil zones raster
+!	Read soil properties
+!	Read landuse raster
+!	Read landuse properties
 !	Fill sinks
-!	Calculamos pendientes
-!	Calculamos acumulado
+!	Compute slopes
+!	Compute flow accumulation
+!   Compute stability
 !
 
 !****************************************************************************
@@ -48,14 +51,6 @@ program fslam
 	write(6,'("Read topo...",/)')
 	call LecTopo()  
 !
-!	Read rainfall raster
-	write(6,'("Read rainfall...",/)')
-	call LecRainfall() 
-!
-!	Read rainfall raster
-	write(6,'("Read p0...",/)')    
-	call LecP0()
-!
 !	Backup initial DEM values
 	topo = topoIni    
 !
@@ -72,13 +67,21 @@ program fslam
 	write(6,'("Compute flow accumulation...",/)')
 	call CumFlowCalc()
 !
-!	Salida de resultados mediante GRID Arcview
+!	Geoprocesses results output Arcview
     if (iOutput .EQ. 1) THEN
 	    write(6,'(/,"GIS Results output:",/)')
 	    call GridOut()
     else
 	    write(6,'(/,"No GIS Results output:",/)')
     endif
+!
+!	Read rainfall raster
+	write(6,'("Read rainfall...",/)')
+	call LecRainfall()
+!
+!	Read rainfall raster
+	write(6,'("Read antecedent rainfall...",/)')
+	call LecRainfallAnt() 
 !
 !	Zones read
 	write(6,'("Read zones...",/)')
@@ -87,6 +90,18 @@ program fslam
 !	Read soil data
 	write(6,'("Read soils data...",/)')
 	call LecZonesDat()
+!
+!	Zones read
+	write(6,'("Read zones...",/)')
+	call LecLandUse()
+!
+!	Read soil data
+	write(6,'("Read soils data...",/)')
+	call LecLandUsesDat()
+!
+!	Compute Curve Number
+	write(6,'("Compute CN...",/)')    
+	call ComputeCN()
 !
 !   Compute soil data Gaussian parameters
 	write(6,'("Compute soils data Gaussian...",/)')
@@ -183,24 +198,27 @@ program fslam
 	DEALLOCATE(cumflow)
 	DEALLOCATE(auxcumflow)
 	DEALLOCATE(zones)
+    DEALLOCATE(lulc)
 	DEALLOCATE(slopeGrid)
 	DEALLOCATE(PFGrid)
     DEALLOCATE(Soils)
-	DEALLOCATE(Gausskv)
-	DEALLOCATE(Gausskh)
+    DEALLOCATE(LandUses)
+	DEALLOCATE(GaussKs)
 	DEALLOCATE(GaussC)
+    DEALLOCATE(GaussCr)
 	DEALLOCATE(Gaussphi)
 	DEALLOCATE(Gaussh)
-	DEALLOCATE(GaussDiff)
+	DEALLOCATE(GaussPor)
 	DEALLOCATE(GaussDens)
-	DEALLOCATE(AntRainVec)
 	DEALLOCATE(Rainfall)
+	DEALLOCATE(Rainfall_ant)    
     DEALLOCATE(h_z)
     DEALLOCATE(h_wt)
     DEALLOCATE(Infiltration)
 	DEALLOCATE(FS_C1)
 	DEALLOCATE(FS_C2)
 	DEALLOCATE(FS_C3)
+	DEALLOCATE(CNGrid)    
 !
 !
 !

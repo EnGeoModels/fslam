@@ -9,12 +9,8 @@ module fslamGlobals_structures
 !
 !	Structures
     TYPE :: SoilProperties
-		REAL*8	:: kvmin
-		REAL*8	:: kvmax
-		REAL*8	:: khmin
-		REAL*8	:: khmax
-		REAL*8	:: Diffmin
-		REAL*8	:: Diffmax
+		REAL*8	:: Ksmin
+		REAL*8	:: Ksmax
 		REAL*8	:: Cmin
 		REAL*8	:: Cmax
 		REAL*8	:: phimin
@@ -23,8 +19,21 @@ module fslamGlobals_structures
 		REAL*8	:: hmax
 		REAL*8	:: densmin
 		REAL*8	:: densmax
-        REAL*8  :: porosity
+        REAL*8  :: porositymin
+        REAL*8  :: porositymax
+        character(len=1) :: hsg
     END TYPE SoilProperties
+!
+!
+!	Structures
+    TYPE :: LandUseProperties
+		REAL*8	:: Crmin
+		REAL*8	:: Crmax
+		REAL*8	:: A
+		REAL*8	:: B
+		REAL*8	:: C
+		REAL*8	:: D
+    END TYPE LandUseProperties
 !
 !
 !	Structures

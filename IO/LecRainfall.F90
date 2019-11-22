@@ -21,7 +21,7 @@ subroutine LecRainfall()
 !
 !
 !	Open topo file
-    open(100,file='./data/rainfall.asc',status='old')
+    open(100,file='./data/rain_event.asc',status='old')
 !
 	write(6,'("Reading rainfall data",/)')
 !

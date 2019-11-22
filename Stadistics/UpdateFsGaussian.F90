@@ -33,13 +33,16 @@ subroutine UpdateFsGaussian()
 !
 !			Static cell values
 			iZone = zones(i,j)
+			iLandUse = lulc(i,j)            
 !
 !           Check null
-            IF (iZone .NE. nodata) THEN
+            IF ((iZone .NE. nodata) .AND. (iLandUse .NE. nodata)) THEN
 !            
 			    Slope = slopeGrid(i,j)
                 Zmax = Gaussh(iZone)%mean
                 denss = GaussDens(iZone)%mean
+                phi = Gaussphi(iZone)%mean
+                Cohesion = GaussC(iZone)%mean + GaussCr(iLandUse)%mean 
                 WT = h_wt(i,j)
 !
 !               Compute auxiliar
@@ -47,8 +50,8 @@ subroutine UpdateFsGaussian()
                 D = Zmax * denss * grav * DSIN(Slope) / (Zmax * DCOS(Slope) * denss * grav - Zmax * DCOS(Slope) * (WT/Zmax) * densw * grav)
 !
 !               Update soil gaussian parameters
-                FS_mu(i,j) = DTAN(Gaussphi(iZone)%mean) / D + GaussC(iZone)%mean / A
-                FS_std(i,j) = DSQRT(A**2 * DTAN(Gaussphi(iZone)%stdde)**2 + D**2 * GaussC(iZone)%stdde**2) / (D*A)
+                FS_mu(i,j) = DTAN(phi) / D + Cohesion / A
+                FS_std(i,j) = DSQRT(A**2 * DTAN(Gaussphi(iZone)%stdde)**2 + D**2 * (GaussC(iZone)%stdde**2 + GaussCr(iLandUse)%stdde**2)) / (D*A)
 !            
             ELSE
                 FS_mu(i,j) = nodata

@@ -2,9 +2,9 @@
 !
 !****************************************************************************
 !
-!  SUBROUTINE: LecP0
+!  SUBROUTINE: LecTopo
 !
-!  PURPOSE:  Read P0.
+!  PURPOSE:  Read digital elevation model (mde).
 !
 !****************************************************************************
 subroutine LecTopo()
@@ -21,7 +21,7 @@ subroutine LecTopo()
 !
 !
 !	Open topo file
-    open(100,file='./data/topo.asc',status='old')
+    open(100,file='./data/dem.asc',status='old')
 !
 	write(6,'("Reading topo data",/)')
 !
@@ -37,6 +37,7 @@ subroutine LecTopo()
 !
 !	Dimensionamos las variables dinámicas
 	ALLOCATE(zones(mx,my))			!Zones delimitation grid
+    ALLOCATE(lulc(mx,my))			!Landuse delimitation grid
 	ALLOCATE(auxcumflow(mx,my,0:7))	!Auxiliar grid
 	ALLOCATE(cumflow(mx,my))		!Cumflow grid
 	ALLOCATE(slopeGrid(mx,my))		!Slopes grid
@@ -48,9 +49,10 @@ subroutine LecTopo()
 	ALLOCATE(FS_std(mx,my))			!FS Standard deviation	
 	ALLOCATE(PFGrid(mx,my))         !Probability of failure value
     ALLOCATE(Rainfall(mx,my))       !Rainfall raster
+    ALLOCATE(Rainfall_ant(mx,my))   !Rainfall raster
     ALLOCATE(h_wt(mx,my))           !Water table raster
-    ALLOCATE(Infiltration(mx,my))     !Rainfall increment due to climate change
-    ALLOCATE(p0Grid(mx,my))         !p0 raster
+    ALLOCATE(Infiltration(mx,my))   !Rainfall increment due to climate change
+    ALLOCATE(CNGrid(mx,my))         !CN raster
     ALLOCATE(h_z(mx,my))            !Saturation degree
 	ALLOCATE(FS_C1(mx,my))			!FS first component	
 	ALLOCATE(FS_C2(mx,my))			!FS second component

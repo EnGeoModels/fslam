@@ -29,25 +29,28 @@ subroutine FsComponents()
 !
 !			Static cell values
 			iZone = zones(i,j)
+			iLandUse = lulc(i,j)            
 !
 !           Check null
-            IF (iZone .NE. nodata) THEN
+            IF ((iZone .NE. nodata) .AND. (iLandUse .NE. nodata)) THEN
 !            
 			    Slope = slopeGrid(i,j)
                 Zmax = Gaussh(iZone)%mean
                 denss = GaussDens(iZone)%mean
+                phi = Gaussphi(iZone)%mean
                 Area = cumflow(i,j)
-                ksh = Gausskh(iZone)%mean
-                Porosity = Soils(iZone)%porosity
+                ksh = GaussKs(iZone)%mean
+                Porosity = GaussPor(iZone)%mean
+                Cohesion = GaussC(iZone)%mean + GaussCr(iLandUse)%mean
 !
 !               First component
-                FS_C1(i,j) =  DMIN1(GaussC(iZone)%mean / (Zmax * DCOS(Slope) * denss * grav * DSIN(Slope)) +  DTAN(Gaussphi(iZone)%mean) / DTAN(Slope), 10.d0)
+                FS_C1(i,j) =  DMIN1(Cohesion / (Zmax * DCOS(Slope) * denss * grav * DSIN(Slope)) +  DTAN(phi) / DTAN(Slope), 10.d0)
 !
 !               Second component
-                FS_C2(i,j) = -DMIN1(DMIN1(Area / (ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope)), 1.d0) * (densw / denss) * (DTAN(Gaussphi(iZone)%mean) / DTAN(Slope)), 10.d0)
+                FS_C2(i,j) = -DMIN1(DMIN1(Area / (ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope)), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
 !
 !               First component
-                FS_C3(i,j) = -DMIN1(DMIN1(1.d0 / (Porosity * Zmax), 1.d0) * (densw / denss) * (DTAN(Gaussphi(iZone)%mean) / DTAN(Slope)), 10.d0)
+                FS_C3(i,j) = -DMIN1(DMIN1(1.d0 / (Porosity * Zmax), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
 !            
             ELSE
                 FS_C1(i,j) = nodata

@@ -2,12 +2,12 @@
 !
 !****************************************************************************
 !
-!  SUBROUTINE: LecZones
+!  SUBROUTINE: LecLandUse
 !
-!  PURPOSE:  Read zones grid.
+!  PURPOSE:  Read land use grid.
 !
 !****************************************************************************
-subroutine LecZones()
+subroutine LecLandUse()
 !
 !
 !
@@ -21,7 +21,7 @@ subroutine LecZones()
 !
 !
 !	Malla de sources
-	open(100,file='./data/soil.asc',status='old')
+	open(100,file='./data/lulc.asc',status='old')
 !
 !	Comprobamos que sea el mismo header que la topografia
 	read(100,*) dummy,imx			!numero nodos X
@@ -43,28 +43,23 @@ subroutine LecZones()
 !
 !	Leemos la malla de zonas
 	do j = 1, my
-		read(100,*) (zones(i,j), i =1, mx)
+		read(100,*) (lulc(i,j), i =1, mx)
 	end do
 !   
 !	Cerramos el fichero
     close(100) 
 !
 !	Discard boundary
-	zones(:, 1)  = nodata
-	zones(:, my) = nodata
-	zones(1, :)  = nodata
-	zones(mx, :) = nodata
+	lulc(:, 1)  = nodata
+	lulc(:, my) = nodata
+	lulc(1, :)  = nodata
+	lulc(mx, :) = nodata
 
 !
 !	Number of zones
-	numberZones = MAXVAL(zones)
-	ALLOCATE(Soils(numberZones))
-	ALLOCATE(GaussKs(numberZones))
-	ALLOCATE(GaussC(numberZones))
-	ALLOCATE(Gaussphi(numberZones))
-	ALLOCATE(Gaussh(numberZones))
-	ALLOCATE(GaussDens(numberZones))
-   	ALLOCATE(GaussPor(numberZones))
+	numberLandUses = MAXVAL(lulc)
+	ALLOCATE(LandUses(numberLandUses))
+    ALLOCATE(GaussCr(numberLandUses))
 !
 !	No error
 	goto 2000

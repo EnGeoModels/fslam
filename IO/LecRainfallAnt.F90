@@ -2,12 +2,12 @@
 !
 !****************************************************************************
 !
-!  SUBROUTINE: LecP0
+!  SUBROUTINE: LecRainfallAnt
 !
-!  PURPOSE:  Read DEM.
+!  PURPOSE:  Read antecedent rainfall raster.
 !
 !****************************************************************************
-subroutine LecP0()
+subroutine LecRainfallAnt()
 !
 !
 !
@@ -21,9 +21,9 @@ subroutine LecP0()
 !
 !
 !	Open topo file
-    open(100,file='./data/p0.asc',status='old')
+    open(100,file='./data/rain_ant.asc',status='old')
 !
-	write(6,'("Reading P0 data",/)')
+	write(6,'("Reading antecedent rainfall data",/)')
 !
 !	Comprobamos que sea el mismo header que la topografia
 	read(100,*) dummy,imx			!numero nodos X
@@ -46,7 +46,7 @@ subroutine LecP0()
 !
 !	Leemos la malla de terreno
     do j = 1, my
-        read(100,*) (p0Grid(i,j), i =1, mx)
+        read(100,*) (Rainfall_ant(i,j), i =1, mx)
     end do
 !   
 !	Cerramos el fichero
@@ -60,10 +60,10 @@ subroutine LecP0()
 !
 !	Se ha producido un error en la malla, no es igual a la de topo
 1000 write(6,100)
-100  format('p0 grid and topo grid non corresponding',/)
+100  format('Zones grid and topo grid non corresponding',/)
 !
 !
 2000 continue
 !   
-!  
+!
 end subroutine

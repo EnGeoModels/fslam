@@ -46,12 +46,14 @@
 				<Tool Name="VFManifestTool" SuppressStartupBanner="true"/></Configuration></Configurations>
 	<Files>
 		<Filter Name="data">
+		<File RelativePath=".\data\dem.asc"/>
+		<File RelativePath=".\data\hmtu.dat"/>
 		<File RelativePath=".\data\input.dat"/>
-		<File RelativePath=".\data\p0.asc"/>
-		<File RelativePath=".\data\rainfall.asc"/>
-		<File RelativePath=".\data\soils.dat"/>
-		<File RelativePath=".\data\topo.asc"/>
-		<File RelativePath=".\data\zones.asc"/></Filter>
+		<File RelativePath=".\data\lulc.asc"/>
+		<File RelativePath=".\data\rain_ant.asc"/>
+		<File RelativePath=".\data\rain_event.asc"/>
+		<File RelativePath=".\data\soil.asc"/>
+		<File RelativePath=".\data\soil.dat"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd">
 		<File RelativePath=".\fslamGlobals_private.f90"/>
 		<File RelativePath=".\fslamGlobals_shared.f90"/>
@@ -66,12 +68,15 @@
 		<File RelativePath=".\GIS\FillSinksCalc.F90"/>
 		<File RelativePath=".\GIS\SlopeCalc.F90"/></Filter>
 		<Filter Name="Infiltration">
+		<File RelativePath=".\Infiltration\ComputeCN.F90"/>
 		<File RelativePath=".\Infiltration\Hydrology.F90"/></Filter>
 		<Filter Name="IO">
 		<File RelativePath=".\IO\GridOut.F90"/>
 		<File RelativePath=".\IO\LecDat.F90"/>
-		<File RelativePath=".\IO\LecP0.F90"/>
+		<File RelativePath=".\IO\LecLandUse.F90"/>
+		<File RelativePath=".\IO\LecLandUsesDat.F90"/>
 		<File RelativePath=".\IO\LecRainfall.F90"/>
+		<File RelativePath=".\IO\LecRainfallAnt.F90"/>
 		<File RelativePath=".\IO\LecTopo.F90"/>
 		<File RelativePath=".\IO\LecZones.F90"/>
 		<File RelativePath=".\IO\LecZonesDat.F90"/>

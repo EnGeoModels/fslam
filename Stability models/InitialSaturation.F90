@@ -27,16 +27,10 @@ subroutine InitialSaturation()
     REAL*8  :: normMean
     REAL*8  :: NormalCDF
 !
-!   Antecedent rainfall
-    AntRainInten = AntRainVec(1)
 !
-!   Units conversion
-    AntRainInten = AntRainInten
-!
-!
-    write(6,'("Initiating antecedent rainfall ",F5.2," mm/day")') (1000.d0*24.d0*3600.d0*AntRainInten)
+    write(6,'("Initiating antecedent rainfall")')
 	open(unit=100,file='./res/Log.txt',access='append')
-	write(100,'("Initiating antecedent rainfall ",F5.2," mm/day")') (1000.d0*24.d0*3600.d0*AntRainInten)
+	write(100,'("Initiating antecedent rainfall")')
 	close(100)    
 !
 !
@@ -49,16 +43,18 @@ subroutine InitialSaturation()
 !
 !
 !           Static cell values
-            iZone = zones(i,j)
+			iZone = zones(i,j)
+			iLandUse = lulc(i,j)            
 !
 !           Check null
-            IF (iZone .NE. nodata) THEN
+            IF ((iZone .NE. nodata) .AND. (iLandUse .NE. nodata)) THEN
 !            
                 Slope = slopeGrid(i,j)
                 Zmax = Gaussh(iZone)%mean
                 denss = GaussDens(iZone)%mean
                 Area = cumflow(i,j)
-                ksh = Gausskh(iZone)%mean
+                ksh = GaussKs(iZone)%mean
+                AntRainInten = Rainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
 !
 !			    Infinite slope stability
 			    h_z(i,j) = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) ), 1.d0)
