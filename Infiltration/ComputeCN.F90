@@ -45,7 +45,7 @@ subroutine ComputeCN()
             IF ((iZone .NE. nodata) .AND. (iLandUse .NE. nodata)) THEN
 !
 !				Get the soil group
-				hsg = Soils(index)%hsg
+				hsg = Soils(iZone)%hsg
 !
 !				Combine with land use data
 				SELECT CASE (hsg)

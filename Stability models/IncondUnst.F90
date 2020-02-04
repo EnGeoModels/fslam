@@ -50,11 +50,11 @@ subroutine IncondUnst()
 !               Compute cumulative probability for FS = 1            
                 UncIns(i,j) = NormalCDF(normMean)
 !
-!               Remove unconditionally unstable cells from model
-                IF (UncIns(i,j) .GT. 0.95d0) THEN
-                    FS_mu(i,j) = nodata
-                    zones(i,j) = nodata
-                ENDIF
+!!               Remove unconditionally unstable cells from model
+!                IF (UncIns(i,j) .GT. 0.95d0) THEN
+!                    FS_mu(i,j) = nodata
+!                    zones(i,j) = nodata
+!                ENDIF
 !
             ELSE
                 UncIns(i,j) = nodata
