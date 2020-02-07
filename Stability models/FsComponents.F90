@@ -49,7 +49,7 @@ subroutine FsComponents()
 !               Second component
                 FS_C2(i,j) = -DMIN1(DMIN1(Area / (ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope)), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
 !
-!               First component
+!               Third component
                 FS_C3(i,j) = -DMIN1(DMIN1(1.d0 / (Porosity * Zmax), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
 !            
             ELSE

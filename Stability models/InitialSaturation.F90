@@ -57,7 +57,7 @@ subroutine InitialSaturation()
                 AntRainInten = Rainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
 !
 !			    Infinite slope stability
-			    h_z(i,j) = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) ), 1.d0)
+			    h_z(i,j) = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope) ), 1.d0)
 !
 !			    Water table depth
     		    h_wt(i,j) = h_z(i,j) * Zmax
