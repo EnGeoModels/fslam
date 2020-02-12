@@ -34,6 +34,15 @@ subroutine LecTopo()
     dy = dx						!Square grid
     read(100,*) dummy,nodata	!nodata ESRI
 !
+!   Header output
+    write(6,'("dem.asc header info:")')
+    write(6,'("mx      = ",I6)') mx
+    write(6,'("my      = ",I6)') my
+    write(6,'("xcorner = ",F12.3)') xcorner
+    write(6,'("ycorner = ",F12.3)') ycorner    
+    write(6,'("dx      = ",F12.6)') dx
+    write(6,'("nodata  = ",F12.6,/)') nodata
+!
 !
 !	Dimensionamos las variables dinámicas
 	ALLOCATE(zones(mx,my))			!Zones delimitation grid

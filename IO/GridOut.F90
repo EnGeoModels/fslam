@@ -22,7 +22,7 @@ subroutine GridOut()
 !
 !
 !	Salida de resultados velocidad mediante GRID Arcview
-	write(6,'("Topo output",/)')
+	write(6,'("Topo output: topo.asc",/)')
 !   
 !	Escribimos resultados
     fname = './res/topo.asc'
@@ -37,7 +37,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', -9999
+	write(100,1000) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my
@@ -51,7 +51,7 @@ subroutine GridOut()
 !
 !
 !	Salida de resultados velocidad mediante GRID Arcview
-	write(6,'("Fill topo output",/)')   
+	write(6,'("Fill topo output: fill.asc",/)')   
 !
 !	Escribimos resultados
     fname = './res/fill.asc'
@@ -66,7 +66,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', -9999
+	write(100,1000) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my
@@ -80,10 +80,10 @@ subroutine GridOut()
 !
 !
 !	Salida de resultados velocidad mediante GRID Arcview
-	write(6,'("Slopes output",/)')
+	write(6,'("Slopes output: slopes.asc",/)')
 !   
 !	Escribimos resultados
-    fname = './res/Slopes.asc'
+    fname = './res/slopes.asc'
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -95,7 +95,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', -9999
+	write(100,1000) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my
@@ -109,7 +109,7 @@ subroutine GridOut()
 !
 !
 !	Salida de resultados mediante GRID Arcview
-	write(6,'("Flow accumulation output",/,/,/)')
+	write(6,'("Flow accumulation output: cumflow.asc",/,/,/)')
 !   
 !	Escribimos resultados
     fname = './res/cumflow.asc'
@@ -124,7 +124,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', -9999
+	write(100,1000) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my

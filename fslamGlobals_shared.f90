@@ -14,7 +14,6 @@ module fslamGlobals_shared
 !
 !
 !   Enteros
-	INTEGER :: nodata		!Nodata ESRI
 	INTEGER :: itipo		!Coordenadas o malla
 	INTEGER :: imaxpend		!Calculo de la maxima pendiente
 	INTEGER :: iFricType	!Frictional(1) or viscous(2)
@@ -31,7 +30,8 @@ module fslamGlobals_shared
 	LOGICAL :: Stopping
 !
 !   Reales
-	REAL*8  :: xcorner		!Coordenada X esquina superior izq.
+	REAL*8 :: nodata		!Nodata ESRI
+    REAL*8  :: xcorner		!Coordenada X esquina superior izq.
 	REAL*8  :: ycorner		!Coordenada X esquina superior izq.
 	REAL*8  :: dx			!Delta X
 	REAL*8  :: dy			!Delta Y

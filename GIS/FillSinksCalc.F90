@@ -111,7 +111,7 @@ subroutine FillSinksCalc()
 		enddo
 !
 !		Output
-		write(6,'("Numer of fillsinks iteration:  ",I10)') numiter
+		write(6,'("Number of fillsinks iteration:  ",I10)') numiter
 !
 	enddo
 !
