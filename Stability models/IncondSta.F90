@@ -39,7 +39,7 @@ subroutine IncondSta()
 			iZone = zones(i,j)
 !           
 !           Check nodata
-            IF (iZone .NE. nodata) THEN
+            IF (iZone .NE. INT(nodata)) THEN
 !
                 Zmax = Gaussh(iZone)%mean
 !

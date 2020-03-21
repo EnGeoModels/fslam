@@ -60,10 +60,10 @@ subroutine LecZones()
     close(100) 
 !
 !	Discard boundary
-	zones(:, 1)  = nodata
-	zones(:, my) = nodata
-	zones(1, :)  = nodata
-	zones(mx, :) = nodata
+	zones(:, 1)  = INT(nodata)
+	zones(:, my) = INT(nodata)
+	zones(1, :)  = INT(nodata)
+	zones(mx, :) = INT(nodata)
 !
 !   Find maximum
 	numberZones = 0

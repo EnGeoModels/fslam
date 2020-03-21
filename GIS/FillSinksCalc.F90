@@ -23,7 +23,7 @@ subroutine FillSinksCalc()
 !
 !	initialisation of other variables */
 	outside = nodata
-	itermax = 100
+	itermax = 10000
 	inimin = 2000000
 	numiter = 0
 	numsin = -9999
@@ -63,12 +63,12 @@ subroutine FillSinksCalc()
 						do xloc = -1,1
 							if((xloc .NE. 0) .OR. (yloc .NE. 0)) then
 								if((xloc .EQ. 0) .OR. (yloc .EQ. 0)) then
-									grad = DTAN(R_D) * dx
+									grad = DTAN(R_D/100.D0) * dx
 								else
-									grad = DTAN(R_D) * DSQRT(dx**2 + dy**2)
+									grad = DTAN(R_D/100.D0) * DSQRT(dx**2 + dy**2)
 								endif
 !							
-								if(topo(i,j) .GT. (topo(i+xloc,j+yloc) + grad - 0.00000001)) then
+								if(topo(i,j) .GE. topo(i+xloc,j+yloc)) then
 									sinkflag = 0
 								endif
 !
@@ -94,9 +94,9 @@ subroutine FillSinksCalc()
 								if(topo(i+xloc,j+yloc) .LT. elemin) then
 									elemin = topo(i+xloc,j+yloc)
 									if((xloc .EQ. 0) .OR. (yloc .EQ. 0)) then
-										grad = DTAN(R_D) * dx
+										grad = DTAN(R_D/100.D0) * dx
 									else
-										grad = DTAN(R_D) * DSQRT(dx**2 + dy**2)
+										grad = DTAN(R_D/100.D0) * DSQRT(dx**2 + dy**2)
 									endif
 								endif
 							endif
@@ -112,6 +112,7 @@ subroutine FillSinksCalc()
 !
 !		Output
 		write(6,'("Number of fillsinks iteration:  ",I10)') numiter
+        write(6,'("Numer of sinks:  ",I10,/)') numsin
 !
 	enddo
 !

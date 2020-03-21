@@ -32,7 +32,7 @@ subroutine FsComponents()
 			iLandUse = lulc(i,j)            
 !
 !           Check null
-            IF ((iZone .NE. nodata) .AND. (iLandUse .NE. nodata)) THEN
+            IF ((iZone .NE. INT(nodata)) .AND. (iLandUse .NE. INT(nodata))) THEN
 !            
 			    Slope = slopeGrid(i,j)
                 Zmax = Gaussh(iZone)%mean

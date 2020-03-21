@@ -25,10 +25,10 @@ subroutine SlopeCalc()
 	slopeGrid(:, my) = nodata
 	slopeGrid(1, :)  = nodata
 	slopeGrid(mx, :) = nodata
-	zones(:, 1)  = nodata
-	zones(:, my) = nodata
-	zones(1, :)  = nodata
-	zones(mx, :) = nodata	
+	zones(:, 1)  = INT(nodata)
+	zones(:, my) = INT(nodata)
+	zones(1, :)  = INT(nodata)
+	zones(mx, :) = INT(nodata)	
 	
 	do j = 2, (my-1)
 		do i = 2, (mx-1)
@@ -126,7 +126,7 @@ subroutine TarbotonSlope(ix, jy)
 !
 		enddo
 
-		slopeGrid(ix, jy) = DATAN(SlopeCell)
+		slopeGrid(ix, jy) = DMAX1(DATAN(SlopeCell),0.0001)
 
 	endif
 !

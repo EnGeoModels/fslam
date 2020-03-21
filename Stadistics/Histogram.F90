@@ -41,6 +41,9 @@ subroutine Histogram(Filename)
     numNullCells = COUNT(PFGrid .EQ. nodata)
     numNotNullCells = my*mx - numNullCells
 !
+!   Convert nodata cells to 0
+    PFGrid = (PFGrid .NE. nodata) * PFGrid
+!
 !   Stable cells
     write(20, '(f10.3,",",f10.4)' ) 0.d0, (COUNT( PFGrid <= 0.d0 ) - numNullCells) / numNotNullCells
 !

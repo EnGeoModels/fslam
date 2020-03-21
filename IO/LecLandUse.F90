@@ -60,16 +60,16 @@ subroutine LecLandUse()
     close(100) 
 !
 !	Discard boundary
-	lulc(:, 1)  = nodata
-	lulc(:, my) = nodata
-	lulc(1, :)  = nodata
-	lulc(mx, :) = nodata
+	lulc(:, 1)  = INT(nodata)
+	lulc(:, my) = INT(nodata)
+	lulc(1, :)  = INT(nodata)
+	lulc(mx, :) = INT(nodata)
 !
 !   Compute number of zones
 	numberLandUses = 0
 	do j=1,my
 		do i=1,mx
-			if( lulc(i,j) .NE. nodata .AND. lulc(i,j) .GT. numberLandUses ) then
+			if( lulc(i,j) .NE. INT(nodata) .AND. lulc(i,j) .GT. numberLandUses ) then
 				numberLandUses = lulc(i,j)
 			endif
 		enddo

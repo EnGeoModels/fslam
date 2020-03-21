@@ -44,7 +44,7 @@ subroutine FinalSaturation()
             iZone = zones(i,j)
 !
 !           Check null
-            IF (iZone .NE. nodata) THEN
+            IF (iZone .NE. INT(nodata)) THEN
 !
 !               Get porosity
                 Porosity = GaussPor(iZone)%mean

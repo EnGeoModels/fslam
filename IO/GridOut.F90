@@ -37,7 +37,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', nodata
+	write(100,1001) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my
@@ -66,7 +66,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', nodata
+	write(100,1001) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my
@@ -95,7 +95,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', nodata
+	write(100,1001) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my
@@ -124,7 +124,7 @@ subroutine GridOut()
 	write(100,1001) 'yllcorner     ', ycorner
 !    
 	write(100,1001) 'cellsize      ', dx
-	write(100,1000) 'NODATA_value  ', nodata
+	write(100,1001) 'NODATA_value  ', nodata
 !
 !	Escribimos la malla
 	do j = 1,my

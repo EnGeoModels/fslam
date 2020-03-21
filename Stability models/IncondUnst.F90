@@ -53,7 +53,7 @@ subroutine IncondUnst()
 !!               Remove unconditionally unstable cells from model
 !                IF (UncIns(i,j) .GT. 0.95d0) THEN
 !                    FS_mu(i,j) = nodata
-!                    zones(i,j) = nodata
+!                    zones(i,j) = INT(nodata)
 !                ENDIF
 !
             ELSE

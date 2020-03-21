@@ -42,7 +42,7 @@ subroutine ComputeCN()
 			iLandUse = lulc(i,j)
 !
 !           Check null
-            IF ((iZone .NE. nodata) .AND. (iLandUse .NE. nodata)) THEN
+            IF ((iZone .NE. INT(nodata)) .AND. (iLandUse .NE. INT(nodata))) THEN
 !
 !				Get the soil group
 				hsg = Soils(iZone)%hsg
