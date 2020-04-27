@@ -42,7 +42,7 @@ subroutine Hydrology()
             IF (CN .NE. nodata) THEN
 !
 !               Convert CN into Ia (Mockus)
-                Ia =  200.d0 / DMAX1(CN, 1.d0) - 2.d0
+                Ia =  5080.d0 / DMAX1(CN, 1.d0) - 50.8d0
 !
 !			    Infiltrated rainfall (SCS-CN model)       
     		    IF (Rainfall(i,j) .GT. Ia) THEN
