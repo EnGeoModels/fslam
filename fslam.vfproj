@@ -66,10 +66,12 @@
 		<Filter Name="GIS">
 		<File RelativePath=".\GIS\CumFlowCalc.F90"/>
 		<File RelativePath=".\GIS\FillSinksCalc.F90"/>
-		<File RelativePath=".\GIS\SlopeCalc.F90"/></Filter>
+		<File RelativePath=".\GIS\SlopeCalc.F90"/>
+		<File RelativePath=".\GIS\WeightedCumFlowCalc.F90"/></Filter>
 		<Filter Name="Infiltration">
 		<File RelativePath=".\Infiltration\ComputeCN.F90"/>
-		<File RelativePath=".\Infiltration\Hydrology.F90"/></Filter>
+		<File RelativePath=".\Infiltration\Hydrology.F90"/>
+		<File RelativePath=".\Infiltration\RunOffCalc.F90"/></Filter>
 		<Filter Name="IO">
 		<File RelativePath=".\IO\GridOut.F90"/>
 		<File RelativePath=".\IO\LecDat.F90"/>

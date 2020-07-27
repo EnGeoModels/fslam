@@ -54,7 +54,7 @@ subroutine InitialSaturation()
                 denss = GaussDens(iZone)%mean
                 Area = cumflow(i,j)
                 ksh = GaussKs(iZone)%mean
-                AntRainInten = Rainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
+                AntRainInten = WeightedRainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
 !
 !			    Infinite slope stability
 			    h_z(i,j) = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope) ), 1.d0)

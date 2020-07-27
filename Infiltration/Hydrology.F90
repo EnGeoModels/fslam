@@ -29,7 +29,7 @@ subroutine Hydrology()
 !
 !   
 !   Compute probability of failure
-    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,normMean) 
+    !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
 	DO j=1,my

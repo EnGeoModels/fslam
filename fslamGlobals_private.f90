@@ -20,6 +20,10 @@ module fslamGlobals_private
     REAL*8  :: AntRainInten !Antecedent rainfall intensity
     REAL*8  :: CN           !Curve number    
     REAL*8  :: Ia           !Infiltration threshold
+    REAL*8  :: Tc           !Concentration time
+    REAL*8  :: Ie           !Event rainfall intensity
+    REAL*8  :: Pd_e           !Event precipitation
+    REAL*8  :: ROcoeff      !Runoff coefficient
     INTEGER :: iZone        !Cell soil type
     INTEGER :: iLandUse     !Landuse type    
 !

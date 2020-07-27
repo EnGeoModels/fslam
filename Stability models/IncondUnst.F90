@@ -29,7 +29,7 @@ subroutine IncondUnst()
 
 
 !   Initial condition dry
-    h_wt(:,:) = 0.d0
+    h_wt = 0.d0
 
 !   Update FS parameters
     CALL UpdateFsGaussian()
@@ -67,7 +67,7 @@ subroutine IncondUnst()
     !$OMP END PARALLEL
 !    
 !   Write results
-    CALL WriteGrid(UncIns, './res/PROB_uncond_unst.asc')
+    IF (iPROB_uncond_unst .EQ. 1) CALL WriteGrid(UncIns, './res/PROB_uncond_unst.asc')
 !
 !
 !	Log file

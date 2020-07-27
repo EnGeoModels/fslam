@@ -66,15 +66,7 @@ program fslam
 !
 !	Compute cum area
 	write(6,'("Compute flow accumulation...",/)')
-	call CumFlowCalc()
-!
-!	Geoprocesses results output Arcview
-    if (iOutput .EQ. 1) THEN
-	    write(6,'(/,"GIS Results output:",/)')
-	    call GridOut()
-    else
-	    write(6,'(/,"No GIS Results output:",/)')
-    endif
+	call CumFlowCalc(topo, cumflow, Dinf)
 !
 !	Read rainfall raster
 	write(6,'("------------------------------------")')
@@ -109,6 +101,26 @@ program fslam
 	write(6,'("Compute CN...",/)')    
 	call ComputeCN()
 !
+!	Compute averaged antedecent rainfall
+	write(6,'("Compute weighted antecedent rainfall...",/)')
+	call WeightedCumFlowCalc(topo, Rainfall_ant, WeightedRainfall_ant, Dinf, cumflow)
+!
+!	Compute averaged event rainfall
+	write(6,'("Compute weighted rainfall...",/)')
+	call WeightedCumFlowCalc(topo, Rainfall, WeightedRainfall, Dinf, cumflow)
+!
+!	Compute averaged CN
+	write(6,'("Compute weighted CN...",/)')
+	call WeightedCumFlowCalc(CNGrid, Rainfall, WeightedCN, Dinf, cumflow)
+!
+!	Geoprocesses results output Arcview
+    if (iOutput .EQ. 1) THEN
+	    write(6,'(/,"GIS Results output:",/)')
+	    call GridOut()
+    else
+	    write(6,'(/,"No GIS Results output:",/)')
+    endif
+!
 !   Compute soil data Gaussian parameters
 	write(6,'("------------------------------------")')
 	write(6,'("Compute soils data Gaussian...",/)')
@@ -120,7 +132,7 @@ program fslam
     call Hydrology()
 !    
 !   Write infiltration results
-    CALL WriteGrid(Infiltration, './res/Infiltration.asc')
+    IF (iInfiltration .EQ. 1) CALL WriteGrid(Infiltration, './res/Infiltration.asc')
 !
 !	Unconditionally instable cells
 	write(6,'("------------------------------------")')
@@ -138,11 +150,11 @@ program fslam
 	call InitialSaturation()
 !    
 !   Write initial saturation degree results
-    CALL WriteGrid(h_z, './res/initial_h_z.asc')
+    IF (iInitial_h_z .EQ. 1) CALL WriteGrid(h_z, './res/initial_h_z.asc')
 !    
 !   Write probability of failure under antecedent rainfall
-    CALL WriteGrid(PFGrid, './res/PROB_failure_initial_cond.asc')
-    CALL WriteGrid(FS_mu, './res/SF_initial_cond.asc')    
+    IF (iPROB_failure_initial_cond .EQ. 1) CALL WriteGrid(PFGrid, './res/PROB_failure_initial_cond.asc')
+    IF (iSF_initial_cond .EQ. 1) CALL WriteGrid(FS_mu, './res/SF_initial_cond.asc')    
 !
 !   Postevent failure probability
 	write(6,'("------------------------------------")')
@@ -150,47 +162,14 @@ program fslam
 	call FinalSaturation()
 !    
 !   Write post event results
-    CALL WriteGrid(PFGrid, './res/PROB_failure_final_cond.asc')
-    CALL WriteGrid(FS_mu, './res/SF_final_cond.asc')
+    IF (iPROB_failure_final_cond .EQ. 1) CALL WriteGrid(PFGrid, './res/PROB_failure_final_cond.asc')
+    IF (iSF_final_cond .EQ. 1) CALL WriteGrid(FS_mu, './res/SF_final_cond.asc')
 !
 !   Compute histogram
 	write(6,'("------------------------------------")')
 	write(6,'("Compute results histogram...",/)')
 	call Histogram('./res/PROB_FAILURE_HIST.csv')
 !
-!
-!   -----------------------------------------------------
-!   Apply climate change factor to the 24hr precipitation
-!   -----------------------------------------------------
-    IF (climateChangeFactor .NE. 1.d0) THEN
-!
-    	write(6,'("------------------------------------")')
-        write(6,'("Apply climate change rainfall factor...",/)')
-        Rainfall = climateChangeFactor * Rainfall
-!
-!       Recompute initial watertable position
-    	call InitialSaturation()
-!
-!       Compute infiltration rainfall for the climate change
-        write(6,'("Compute infiltrated rainfall considering climate change...",/)')
-        call Hydrology()
-!    
-!       Write results
-        CALL WriteGrid(Infiltration, './res/Infiltration_CC.asc')
-!
-!       Postevent failure probability considering climate change
-	    write(6,'("After event stability computation including climate change...",/)')
-	    call FinalSaturation()
-!    
-!       Write post event results
-        CALL WriteGrid(PFGrid, './res/PROB_failure_final_cond_CC.asc')
-        CALL WriteGrid(FS_mu, './res/SF_final_cond_CC.asc')
-!
-!       Compute histogram
-	    write(6,'("Compute results histogram for climate change...",/)')
-	    call Histogram('./res/PROB_FAILURE_HIST_CC.csv')
-!
-    END IF
 !
 !   ---------------------
 !   For research purposes
@@ -208,14 +187,32 @@ program fslam
         CALL WriteGrid(FS_C3, './res/SF_event.asc')
 !
     END IF
-   
+!
+!
+!   ---------------------
+!   For research purposes
+!   ---------------------
+    IF (iRunoff .EQ. 1) THEN
+!
+!       Compute runoff
+    	write(6,'("------------------------------------")')
+	    write(6,'("Compute event runoff...",/)')
+!
+!
+!	    Compute cum area using D8
+	    write(6,'("Compute flow accumulation using D8 algorithm...",/)')
+	    call CumFlowCalc(topo, cumflow, D8)
+!
+        call RunOffCalc()    
+!    
+!
+    END IF
 !
 !
 !	Liberamos memoria
 	DEALLOCATE(topo)
 	DEALLOCATE(topoIni)
 	DEALLOCATE(cumflow)
-	DEALLOCATE(auxcumflow)
 	DEALLOCATE(zones)
     DEALLOCATE(lulc)
 	DEALLOCATE(slopeGrid)
@@ -238,6 +235,9 @@ program fslam
 	DEALLOCATE(FS_C2)
 	DEALLOCATE(FS_C3)
 	DEALLOCATE(CNGrid)    
+    DEALLOCATE(WeightedRainfall_ant)
+    DEALLOCATE(WeightedRainfall)    
+    DEALLOCATE(WeightedCN)
 !
 !
 !

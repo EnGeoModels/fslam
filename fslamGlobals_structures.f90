@@ -58,6 +58,11 @@ module fslamGlobals_structures
 	REAL*8, PARAMETER :: D_R	= 57.295780d0
 	REAL*8, PARAMETER :: R_D	= 0.0174532d0
 	REAL*8, PARAMETER :: grav		= 9.81d0
+    INTEGER, PARAMETER :: Dinf		= 1
+    INTEGER, PARAMETER :: D8		= 0
+!
+!
+
 !
 !
 end module fslamGlobals_structures

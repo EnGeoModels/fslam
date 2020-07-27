@@ -45,27 +45,29 @@ subroutine LecTopo()
 !
 !
 !	Dimensionamos las variables dinámicas
-	ALLOCATE(zones(mx,my))			!Zones delimitation grid
-    ALLOCATE(lulc(mx,my))			!Landuse delimitation grid
-	ALLOCATE(auxcumflow(mx,my,0:7))	!Auxiliar grid
-	ALLOCATE(cumflow(mx,my))		!Cumflow grid
-	ALLOCATE(slopeGrid(mx,my))		!Slopes grid
-	ALLOCATE(topoIni(mx,my))		!Topo grid
-	ALLOCATE(topo(mx,my))			!Corrected topo grid
-	ALLOCATE(UncIns(mx,my))			!Unconditionally instable
-	ALLOCATE(UncEst(mx,my))			!Unconditionally stable	
-	ALLOCATE(FS_mu(mx,my))			!FS mean	
-	ALLOCATE(FS_std(mx,my))			!FS Standard deviation	
-	ALLOCATE(PFGrid(mx,my))         !Probability of failure value
-    ALLOCATE(Rainfall(mx,my))       !Rainfall raster
-    ALLOCATE(Rainfall_ant(mx,my))   !Rainfall raster
-    ALLOCATE(h_wt(mx,my))           !Water table raster
-    ALLOCATE(Infiltration(mx,my))   !Rainfall increment due to climate change
-    ALLOCATE(CNGrid(mx,my))         !CN raster
-    ALLOCATE(h_z(mx,my))            !Saturation degree
-	ALLOCATE(FS_C1(mx,my))			!FS first component	
-	ALLOCATE(FS_C2(mx,my))			!FS second component
-	ALLOCATE(FS_C3(mx,my))			!FS third component
+	ALLOCATE(zones(mx,my))			        !Zones delimitation grid
+    ALLOCATE(lulc(mx,my))			        !Landuse delimitation grid
+	ALLOCATE(cumflow(mx,my))		        !Cumflow grid
+	ALLOCATE(slopeGrid(mx,my))		        !Slopes grid
+	ALLOCATE(topoIni(mx,my))		        !Topo grid
+	ALLOCATE(topo(mx,my))			        !Corrected topo grid
+	ALLOCATE(UncIns(mx,my))			        !Unconditionally instable
+	ALLOCATE(UncEst(mx,my))			        !Unconditionally stable	
+	ALLOCATE(FS_mu(mx,my))			        !FS mean	
+	ALLOCATE(FS_std(mx,my))			        !FS Standard deviation	
+	ALLOCATE(PFGrid(mx,my))                 !Probability of failure value
+    ALLOCATE(Rainfall(mx,my))               !Rainfall raster
+    ALLOCATE(Rainfall_ant(mx,my))           !Rainfall raster
+    ALLOCATE(h_wt(mx,my))                   !Water table raster
+    ALLOCATE(Infiltration(mx,my))           !Rainfall increment due to climate change
+    ALLOCATE(CNGrid(mx,my))                 !CN raster
+    ALLOCATE(h_z(mx,my))                    !Saturation degree
+	ALLOCATE(FS_C1(mx,my))			        !FS first component	
+	ALLOCATE(FS_C2(mx,my))			        !FS second component
+	ALLOCATE(FS_C3(mx,my))			        !FS third component
+    ALLOCATE(WeightedRainfall_ant(mx,my))   !Average value of antecedent rainfall in cell contributing area
+    ALLOCATE(WeightedRainfall(mx,my))       !Average value of antecedent rainfall in cell contributing area       
+    ALLOCATE(WeightedCN(mx,my))             !Average value of CN in cell contributing area
 !
 !
 !	Leemos la malla de terreno
