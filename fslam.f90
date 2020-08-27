@@ -198,10 +198,18 @@ program fslam
     	write(6,'("------------------------------------")')
 	    write(6,'("Compute event runoff...",/)')
 !
-!
 !	    Compute cum area using D8
 	    write(6,'("Compute flow accumulation using D8 algorithm...",/)')
 	    call CumFlowCalc(topo, cumflow, D8)
+!
+!       Compute averaged event rainfall using D8
+        write(6,'("Compute D8 weighted rainfall...",/)')
+        call WeightedCumFlowCalc(topo, Rainfall, WeightedRainfall, D8, cumflow)
+!
+!	    Compute averaged CN using D8
+        write(6,'("Compute D8 weighted CN...",/)')
+        call WeightedCumFlowCalc(topo, CNGrid, WeightedCN, D8, cumflow)
+!
 !
         call RunOffCalc()    
 !    

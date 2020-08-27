@@ -32,7 +32,7 @@ subroutine RunOffCalc()
 !
 !	Compute averaged slope
 	write(6,'("RunOffCalc(): Compute weighted slope...",/)')
-	call WeightedCumFlowCalc(topo, slopeGrid, WeightedSlope, Dinf, cumflow)
+	call WeightedCumFlowCalc(topo, slopeGrid, WeightedSlope, D8, cumflow)
 !   
 !   Compute probability of failure
     !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j,normMean) 
@@ -72,7 +72,7 @@ subroutine RunOffCalc()
 !
                 ELSE
                     RunOff(i,j) = 0.d0
-                ENDIF
+                ENDIF      
 !
             ELSE
                 RunOff(i,j) = nodata
