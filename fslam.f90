@@ -230,7 +230,7 @@ program fslam
 	DEALLOCATE(GaussKs)
 	DEALLOCATE(GaussC)
     DEALLOCATE(GaussCr)
-	DEALLOCATE(Gaussphi)
+	DEALLOCATE(GaussTanPhi)
 	DEALLOCATE(Gaussh)
 	DEALLOCATE(GaussPor)
 	DEALLOCATE(GaussDens)

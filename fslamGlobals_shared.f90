@@ -86,7 +86,7 @@ module fslamGlobals_shared
 	TYPE(LandUseProperties),    DIMENSION(:),	ALLOCATABLE :: LandUses	!Land use properties    
 	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: GaussKs
 	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: GaussC
-	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: Gaussphi
+	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: GaussTanPhi
 	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: Gaussh
 	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: GaussPor
 	TYPE(GaussianProperties),	DIMENSION(:),	ALLOCATABLE :: GaussDens

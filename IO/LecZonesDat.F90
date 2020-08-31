@@ -41,8 +41,8 @@ subroutine LecZonesDat()
 		Soils(index)%Ksmax = rKsmax
 		Soils(index)%Cmin = Cmin * 1000.d0
 		Soils(index)%Cmax = Cmax * 1000.d0
-		Soils(index)%phimin = phimin * R_D
-		Soils(index)%phimax = phimax * R_D
+		Soils(index)%tanPhimin = DTAN(phimin * R_D)
+		Soils(index)%tanPhimax = DTAN(phimax * R_D)
 		Soils(index)%hmin = hmin
 		Soils(index)%hmax = hmax
 		Soils(index)%densmin = densmin

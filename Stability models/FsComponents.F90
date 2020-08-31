@@ -37,7 +37,7 @@ subroutine FsComponents()
 			    Slope = slopeGrid(i,j)
                 Zmax = Gaussh(iZone)%mean
                 denss = GaussDens(iZone)%mean
-                phi = Gaussphi(iZone)%mean
+                phi = DATAN(GaussTanPhi(iZone)%mean)
                 Area = cumflow(i,j)
                 ksh = GaussKs(iZone)%mean
                 Porosity = GaussPor(iZone)%mean

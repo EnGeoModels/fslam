@@ -41,7 +41,7 @@ subroutine UpdateFsGaussian()
 			    Slope = slopeGrid(i,j)
                 Zmax = Gaussh(iZone)%mean
                 denss = GaussDens(iZone)%mean
-                phi = Gaussphi(iZone)%mean
+                phi = DATAN(GaussTanPhi(iZone)%mean)
                 Cohesion = GaussC(iZone)%mean + GaussCr(iLandUse)%mean 
                 WT = h_wt(i,j)
 !
@@ -51,7 +51,7 @@ subroutine UpdateFsGaussian()
 !
 !               Update soil gaussian parameters
                 FS_mu(i,j) = DTAN(phi) / D + Cohesion / A
-                FS_std(i,j) = DSQRT(A**2 * DTAN(Gaussphi(iZone)%stdde)**2 + D**2 * (GaussC(iZone)%stdde**2 + GaussCr(iLandUse)%stdde**2)) / (D*A)
+                FS_std(i,j) = DSQRT(A**2 * GaussTanPhi(iZone)%stdde**2 + D**2 * (GaussC(iZone)%stdde**2 + GaussCr(iLandUse)%stdde**2)) / (D*A)
 !            
             ELSE
                 FS_mu(i,j) = nodata

@@ -13,8 +13,8 @@ module fslamGlobals_structures
 		REAL*8	:: Ksmax
 		REAL*8	:: Cmin
 		REAL*8	:: Cmax
-		REAL*8	:: phimin
-		REAL*8	:: phimax
+		REAL*8	:: tanphimin
+		REAL*8	:: tanphimax
 		REAL*8	:: hmin
 		REAL*8	:: hmax
 		REAL*8	:: densmin

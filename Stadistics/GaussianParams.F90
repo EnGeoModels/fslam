@@ -29,7 +29,7 @@ subroutine GaussianParams()
 	do i = 1, numberZones
 		GaussKs(i) = GaussianProperties( (Soils(i)%Ksmax+Soils(i)%Ksmin)/2.d0,(Soils(i)%Ksmax-Soils(i)%Ksmin)/4.d0 )
 		GaussC(i) = GaussianProperties( (Soils(i)%Cmax+Soils(i)%Cmin)/2.d0,(Soils(i)%Cmax-Soils(i)%Cmin)/4.d0 )
-		Gaussphi(i)= GaussianProperties( (Soils(i)%phimax+Soils(i)%phimin)/2.d0,(Soils(i)%phimax-Soils(i)%phimin)/4.d0 )
+		GaussTanPhi(i)= GaussianProperties( (Soils(i)%tanphimax+Soils(i)%tanphimin)/2.d0,(Soils(i)%tanphimax-Soils(i)%tanphimin)/4.d0 )
 		Gaussh(i) = GaussianProperties( (Soils(i)%hmax+Soils(i)%hmin)/2.d0,(Soils(i)%hmax-Soils(i)%hmin)/4.d0 )
 		GaussPor(i) = GaussianProperties( (Soils(i)%porositymax+Soils(i)%porositymin)/2.d0,(Soils(i)%porositymax-Soils(i)%porositymin)/4.d0 )
 		GaussDens(i) = GaussianProperties( (Soils(i)%Densmax+Soils(i)%Densmin)/2.d0,(Soils(i)%Densmax-Soils(i)%Densmin)/4.d0 )
