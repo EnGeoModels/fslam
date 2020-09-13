@@ -111,7 +111,7 @@ program fslam
 !
 !	Compute averaged CN
 	write(6,'("Compute weighted CN...",/)')
-	call WeightedCumFlowCalc(CNGrid, Rainfall, WeightedCN, Dinf, cumflow)
+	call WeightedCumFlowCalc(topo, CNGrid, WeightedCN, Dinf, cumflow)
 !
 !	Geoprocesses results output Arcview
     if (iOutput .EQ. 1) THEN
@@ -176,6 +176,12 @@ program fslam
 !   ---------------------
     IF (iResearch .EQ. 1) THEN
 !
+!       Allocate memory
+        ALLOCATE(FS_C1(mx,my))			        !FS first component	
+	    ALLOCATE(FS_C2(mx,my))			        !FS second component
+	    ALLOCATE(FS_C3(mx,my))			        !FS third component
+
+        
 !       Principal components of the safety factor
     	write(6,'("------------------------------------")')
 	    write(6,'("Divide FS in its shape functions...",/)')
@@ -186,11 +192,26 @@ program fslam
         CALL WriteGrid(FS_C2, './res/SF_antecedent.asc')
         CALL WriteGrid(FS_C3, './res/SF_event.asc')
 !
+!       Free memory
+	    DEALLOCATE(FS_C1)
+	    DEALLOCATE(FS_C2)
+	    DEALLOCATE(FS_C3)
+!
     END IF
 !
 !
+!   Free space required for runoff calculations
+	DEALLOCATE(PFGrid)
+    DEALLOCATE(h_z)
+    DEALLOCATE(h_wt)
+    DEALLOCATE(Infiltration)
+    DEALLOCATE(WeightedRainfall_ant)
+	DEALLOCATE(Rainfall_ant)    
+	DEALLOCATE(topoIni)
+!
+!
 !   ---------------------
-!   For research purposes
+!   Runoff module
 !   ---------------------
     IF (iRunoff .EQ. 1) THEN
 !
@@ -210,7 +231,7 @@ program fslam
         write(6,'("Compute D8 weighted CN...",/)')
         call WeightedCumFlowCalc(topo, CNGrid, WeightedCN, D8, cumflow)
 !
-!
+!       Call runoff algorithm
         call RunOffCalc()    
 !    
 !
@@ -219,12 +240,10 @@ program fslam
 !
 !	Liberamos memoria
 	DEALLOCATE(topo)
-	DEALLOCATE(topoIni)
 	DEALLOCATE(cumflow)
 	DEALLOCATE(zones)
     DEALLOCATE(lulc)
 	DEALLOCATE(slopeGrid)
-	DEALLOCATE(PFGrid)
     DEALLOCATE(Soils)
     DEALLOCATE(LandUses)
 	DEALLOCATE(GaussKs)
@@ -235,15 +254,7 @@ program fslam
 	DEALLOCATE(GaussPor)
 	DEALLOCATE(GaussDens)
 	DEALLOCATE(Rainfall)
-	DEALLOCATE(Rainfall_ant)    
-    DEALLOCATE(h_z)
-    DEALLOCATE(h_wt)
-    DEALLOCATE(Infiltration)
-	DEALLOCATE(FS_C1)
-	DEALLOCATE(FS_C2)
-	DEALLOCATE(FS_C3)
 	DEALLOCATE(CNGrid)    
-    DEALLOCATE(WeightedRainfall_ant)
     DEALLOCATE(WeightedRainfall)    
     DEALLOCATE(WeightedCN)
 !

@@ -62,9 +62,6 @@ subroutine LecTopo()
     ALLOCATE(Infiltration(mx,my))           !Rainfall increment due to climate change
     ALLOCATE(CNGrid(mx,my))                 !CN raster
     ALLOCATE(h_z(mx,my))                    !Saturation degree
-	ALLOCATE(FS_C1(mx,my))			        !FS first component	
-	ALLOCATE(FS_C2(mx,my))			        !FS second component
-	ALLOCATE(FS_C3(mx,my))			        !FS third component
     ALLOCATE(WeightedRainfall_ant(mx,my))   !Average value of antecedent rainfall in cell contributing area
     ALLOCATE(WeightedRainfall(mx,my))       !Average value of antecedent rainfall in cell contributing area       
     ALLOCATE(WeightedCN(mx,my))             !Average value of CN in cell contributing area

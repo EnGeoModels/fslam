@@ -63,12 +63,12 @@ subroutine FillSinksCalc()
 						do xloc = -1,1
 							if((xloc .NE. 0) .OR. (yloc .NE. 0)) then
 								if((xloc .EQ. 0) .OR. (yloc .EQ. 0)) then
-									grad = DTAN(R_D/100.D0) * dx
+									grad = DTAN(R_D/10000.D0) * dx
 								else
-									grad = DTAN(R_D/100.D0) * DSQRT(dx**2 + dy**2)
+									grad = DTAN(R_D/10000.D0) * DSQRT(dx**2 + dy**2)
 								endif
 !							
-								if(topo(i,j) .GE. topo(i+xloc,j+yloc)) then
+								if(topo(i,j) .GT. topo(i+xloc,j+yloc)) then
 									sinkflag = 0
 								endif
 !
@@ -94,9 +94,9 @@ subroutine FillSinksCalc()
 								if(topo(i+xloc,j+yloc) .LT. elemin) then
 									elemin = topo(i+xloc,j+yloc)
 									if((xloc .EQ. 0) .OR. (yloc .EQ. 0)) then
-										grad = DTAN(R_D/100.D0) * dx
+										grad = DTAN(R_D/10000.D0) * dx
 									else
-										grad = DTAN(R_D/100.D0) * DSQRT(dx**2 + dy**2)
+										grad = DTAN(R_D/10000.D0) * DSQRT(dx**2 + dy**2)
 									endif
 								endif
 							endif

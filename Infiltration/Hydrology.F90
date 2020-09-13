@@ -4,7 +4,7 @@
 !
 !  SUBROUTINE: Hydrology
 !
-!  PURPOSE:  Compute effective rainfall and infiltration.
+!  PURPOSE:  Compute infiltration.
 !
 !****************************************************************************
 subroutine Hydrology()
