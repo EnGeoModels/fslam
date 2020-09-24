@@ -24,10 +24,11 @@ module fslamGlobals_private
     REAL*8  :: Ie           !Event rainfall intensity
     REAL*8  :: Pd_e           !Event precipitation
     REAL*8  :: ROcoeff      !Runoff coefficient
+    REAL*8  :: UpsLength    !Longest path length
     INTEGER :: iZone        !Cell soil type
     INTEGER :: iLandUse     !Landuse type    
 !
-!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,CN,Ia,iZone,AntRainInten,iLandUse)
+!$OMP THREADPRIVATE(denss,Slope,Cohesion,ksv,ksh,Diff,Zmax,Zinc,phi,Area,Porosity,CN,Ia,UpsLength,iZone,AntRainInten,iLandUse)
 !
 !
 end module fslamGlobals_private

@@ -44,8 +44,9 @@ subroutine RunOffCalc()
 !           Get averaged area values
             CN = WeightedCN(i,j)
             Area = cumflow(i,j)
-            Slope = DTAN(WeightedSlope(i,j))
             Pd_e = WeightedRainfall(i,j)
+            UpsLength = longestPath(i,j)
+            Slope = (maxElev(i,j) - topo(i,j)) / UpsLength
 !
 !           Check null
             IF (CN .NE. nodata) THEN
@@ -54,7 +55,7 @@ subroutine RunOffCalc()
                 Ia =  5080.d0 / DMAX1(CN, 1.d0) - 50.8d0
 !
 !               Compute concentration time (Temez) [hours]
-                Tc = 0.3d0 * (SQRT(Area) / 1000.d0 / Slope**0.25d0 )**0.76d0
+                Tc = 0.3d0 * (UpsLength / 1000.d0 / Slope**0.25d0 )**0.76d0
 !
 !               Minimum concentration time
                 Tc = DMAX1(Tc, 0.0833d0)

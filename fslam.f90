@@ -219,6 +219,10 @@ program fslam
     	write(6,'("------------------------------------")')
 	    write(6,'("Compute event runoff...",/)')
 !
+!       Allocate memory for auxiliar rasters
+        ALLOCATE(longestPath(mx,my))                !Longests upstream path	
+	    ALLOCATE(maxElev(mx,my))			        !Maximum elevation of stream
+!
 !	    Compute cum area using D8
 	    write(6,'("Compute flow accumulation using D8 algorithm...",/)')
 	    call CumFlowCalc(topo, cumflow, D8)
@@ -231,9 +235,16 @@ program fslam
         write(6,'("Compute D8 weighted CN...",/)')
         call WeightedCumFlowCalc(topo, CNGrid, WeightedCN, D8, cumflow)
 !
+!       Compute parameters for concentration time
+        write(6,'("Compute longest path...",/)')
+        call LongestPathCalc(topo, longestPath, maxElev)
+!
 !       Call runoff algorithm
         call RunOffCalc()    
-!    
+!
+!       Allocate memory for auxiliar rasters
+        DEALLOCATE(longestPath)
+	    DEALLOCATE(maxElev)
 !
     END IF
 !

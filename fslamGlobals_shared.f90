@@ -60,6 +60,7 @@ module fslamGlobals_shared
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: slopeGrid		            !Slopes grid
 	REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: cumflow			            !Cumflow grid
 	REAL*8,   DIMENSION(:,:,:),	ALLOCATABLE :: auxcumflow		            !Auxiliar grid
+	REAL*8,   DIMENSION(:,:,:),	ALLOCATABLE :: auxcumflow2		            !Second auxiliar grid    
     REAL*8,   DIMENSION(:,:),	ALLOCATABLE :: PFGrid			            !Probability of failure
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: Rainfall_ant             !Ant rain intensity grid
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: WeightedRainfall_ant     !Average value of antecedent rainfall in cell contributing area
@@ -79,6 +80,8 @@ module fslamGlobals_shared
 	REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: FS_C3                    !FS third component
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: RunOff                   !Rainfall runoff
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: WeightedSlope            !Average value of slope in cell contributing area 
+    REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: longestPath              !Longests upstream path
+    REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: maxElev                  !Maximum elevation of stream
 !
 !
 !	Structures
