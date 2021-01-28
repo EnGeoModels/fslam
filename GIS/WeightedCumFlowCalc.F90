@@ -102,10 +102,11 @@ recursive subroutine WeightedGetFlow(ix, jy, inGridData, outGridData, weightGrid
 	endif
 !
 	dValue = inGridData(ix, jy)
+    dValue2 = weightGridData(ix, jy)
 !		
-	if(dValue .NE. nodata) then
+	if((dValue .NE. nodata) .AND. (dValue2 .NE. nodata)) then
 !		
-		outGridData(ix, jy) = weightGridData(ix, jy)
+		outGridData(ix, jy) = dValue2
 !
 		j = 4
 		do i=0, 7
@@ -120,10 +121,21 @@ recursive subroutine WeightedGetFlow(ix, jy, inGridData, outGridData, weightGrid
 				dFlow = auxcumflow(iix,jjy,j)
 !
 				if(dFlow .NE. nodata) then
-					call WeightedGetFlow(iix,jjy, inGridData, outGridData, weightGridData)
-					dValue =  outGridData(iix, jjy) * dFlow
-					dValue2 =  outGridData(ix, jy)
-					outGridData(ix, jy) = dValue + dValue2
+!
+				    call WeightedGetFlow(iix,jjy, inGridData, outGridData, weightGridData)
+                    
+                    if (outGridData(iix, jjy) .NE. nodata) then
+					    dValue =  outGridData(iix, jjy) * dFlow
+                    else
+                        dValue = 0.d0
+                    endif
+                    
+                    if (outGridData(ix, jy) .NE. nodata) then
+					    outGridData(ix, jy) = dValue + outGridData(ix, jy)
+                    else
+                        outGridData(ix, jy) = dValue
+                    endif
+!                    
 				endif
 !
 			endif
