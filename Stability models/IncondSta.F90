@@ -91,7 +91,7 @@ subroutine IncondSta()
 !
 !	Log file
     write(6,'("Computed unconditionally stable cells probability")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Computed unconditionally stable cells probability")')
 	close(100)
 !

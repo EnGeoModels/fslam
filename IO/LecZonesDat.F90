@@ -22,34 +22,35 @@ subroutine LecZonesDat()
 !
 !   Variables
     character(len=1) :: hsg                     !Soil group
+    TYPE(ReadSoilProperties) :: read_aux
 !
 !	Abrimos ficheros de entrada de datos de control
 	open(100,file='./data/soil.dat',status='old',form='formatted',err=1000)
 !
 !	first & second line
-	read(100,*)	!index  Ksmax   Ksmin    Cmax    Cmin    phimax     phimin     hmax    hmin     densmax    densmin    porositymax   porositymin   hsg
-	read(100,*) !()     (m/s)   (m/s)    (kPa)   (kPa)   (degree)   (degree)   (m)     (m)      (kg/m3)    (kg/m3)    (m3/m3)       (m3/m3)       ()
+	read(100,*)	!index,Ks,Cmax,Cmin,phimax,phimin,h,dens,porosity,hsg
+	read(100,*) !(),(m/s),(kPa),(kPa),(degree),(degree),(m),(kg/m3),(m3/m3),()
 !
 !
 	do i=1, numberZones
 !	
 !		Entrada de parametros de input.dat:
-		read(100,*) index,rKsmax,rKsmin,Cmax,Cmin,phimax,phimin,hmax,hmin,densmax,densmin,rporositymax,rporositymin,hsg
+		read(100,*) read_aux
 !
 !		Corregimos unidades
-		Soils(index)%Ksmin = rKsmin
-		Soils(index)%Ksmax = rKsmax
-		Soils(index)%Cmin = Cmin * 1000.d0
-		Soils(index)%Cmax = Cmax * 1000.d0
-		Soils(index)%tanPhimin = DTAN(phimin * R_D)
-		Soils(index)%tanPhimax = DTAN(phimax * R_D)
-		Soils(index)%hmin = hmin
-		Soils(index)%hmax = hmax
-		Soils(index)%densmin = densmin
-		Soils(index)%densmax = densmax
-        Soils(index)%porositymax = rporositymax
-        Soils(index)%porositymin = rporositymin
-        Soils(index)%hsg = hsg
+		Soils(read_aux%index)%Ksmin = read_aux%rKs
+		Soils(read_aux%index)%Ksmax = read_aux%rKs
+		Soils(read_aux%index)%Cmin = read_aux%Cmin * 1000.d0
+		Soils(read_aux%index)%Cmax = read_aux%Cmax * 1000.d0
+		Soils(read_aux%index)%tanPhimin = DTAN(read_aux%phimin * R_D)
+		Soils(read_aux%index)%tanPhimax = DTAN(read_aux%phimax * R_D)
+		Soils(read_aux%index)%hmin = read_aux%h_soil
+		Soils(read_aux%index)%hmax = read_aux%h_soil
+		Soils(read_aux%index)%densmin = read_aux%dens
+		Soils(read_aux%index)%densmax = read_aux%dens
+        Soils(read_aux%index)%porositymax = read_aux%rporosity
+        Soils(read_aux%index)%porositymin = read_aux%rporosity
+        Soils(read_aux%index)%hsg = read_aux%hsg
 !
 	enddo
 !

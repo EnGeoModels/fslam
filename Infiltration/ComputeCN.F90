@@ -25,7 +25,7 @@ subroutine ComputeCN()
     character(len=1) :: hsg                     !Soil group
 !
     write(6,'("Combine soil data and landuse into CN")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Combine soil data and landuse into CN")')
 	close(100)    
 !
@@ -76,7 +76,7 @@ subroutine ComputeCN()
 !
 !	Log file
     write(6,'("Computed Curve Number")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Computed Curve Number")')
 	close(100)
 !   

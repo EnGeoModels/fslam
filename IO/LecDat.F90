@@ -22,16 +22,12 @@ subroutine LecDat()
 !
 !
 !	Abrimos ficheros de entrada de datos de control
-	open(100,file='./data/input.dat',status='old',form='formatted')
+	open(100,file=fname_input,status='old',form='formatted')
 !
 	write(6,'("Reading configuration file...",/)')
 !
 !	Entrada de parametros de input.dat:
-    read(100,*) densw				!Water density
-!
     read(100,*) iOutput             !Create GIS results
-!
-    read(100,*) climateChangeFactor !Read climate change factor for 24hr precipitation
 !
     read(100,*) iResearch           !Output all results (safety factor and probability of failure)
 !

@@ -28,7 +28,7 @@ subroutine FinalSaturation()
     REAL*8  :: NormalCDF
 !
     write(6,'("Initiating event rainfall FS")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Initiating event rainfall FS")')
 	close(100)    
 !
@@ -98,7 +98,7 @@ subroutine FinalSaturation()
 !
 !	Log file
     write(6,'("Computed probability of failure under event rainfall")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Computed probability of failure under event rainfall")')
 	close(100)
 !

@@ -25,7 +25,7 @@ subroutine GridOut()
 	write(6,'("Topo output: topo.asc",/)')
 !   
 !	Escribimos resultados
-    fname = './res/topo.asc'
+    fname = (trim(fname_res) // '/topo.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -54,7 +54,7 @@ subroutine GridOut()
 	write(6,'("Fill topo output: fill.asc",/)')   
 !
 !	Escribimos resultados
-    fname = './res/fill.asc'
+    fname = (trim(fname_res) // '/fill.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -83,7 +83,7 @@ subroutine GridOut()
 	write(6,'("Slopes output: slopes.asc",/)')
 !   
 !	Escribimos resultados
-    fname = './res/slopes.asc'
+    fname = (trim(fname_res) // '/slopes.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -112,7 +112,7 @@ subroutine GridOut()
 	write(6,'("Flow accumulation output: cumflow.asc",/,/,/)')
 !   
 !	Escribimos resultados
-    fname = './res/cumflow.asc'
+    fname = (trim(fname_res) // '/cumflow.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -141,7 +141,7 @@ subroutine GridOut()
 	write(6,'("Averaged antecent rainfall output: rain_ant_averaged.asc",/,/,/)')
 !   
 !	Escribimos resultados
-    fname = './res/rain_ant_averaged.asc'
+    fname = (trim(fname_res) // '/rain_ant_averaged.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -170,7 +170,7 @@ subroutine GridOut()
 	write(6,'("Averaged rainfall output: rain_averaged.asc",/,/,/)')
 !   
 !	Escribimos resultados
-    fname = './res/rain_averaged.asc'
+    fname = (trim(fname_res) // '/rain_averaged.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !
@@ -199,7 +199,7 @@ subroutine GridOut()
 	write(6,'("Averaged CN output: CN_averaged.asc",/,/,/)')
 !   
 !	Escribimos resultados
-    fname = './res/CN_averaged.asc'
+    fname = (trim(fname_res) // '/CN_averaged.asc')
 !
 	open(unit=100,file=fname,status='unknown',form='formatted')
 !

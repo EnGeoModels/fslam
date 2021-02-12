@@ -26,6 +26,21 @@ module fslamGlobals_structures
 !
 !
 !	Structures
+    TYPE :: ReadSoilProperties
+        INTEGER :: index
+		REAL*8	:: rKs
+		REAL*8	:: Cmin
+		REAL*8	:: Cmax
+		REAL*8	:: phimin
+		REAL*8	:: phimax
+		REAL*8	:: h_soil
+		REAL*8	:: dens
+        REAL*8  :: rporosity
+        character(len=1) :: hsg
+    END TYPE ReadSoilProperties   
+!
+!
+!	Structures
     TYPE :: LandUseProperties
 		REAL*8	:: Crmin
 		REAL*8	:: Crmax
@@ -34,6 +49,18 @@ module fslamGlobals_structures
 		REAL*8	:: C
 		REAL*8	:: D
     END TYPE LandUseProperties
+!
+!
+!	Structures
+    TYPE :: ReadLandUseProperties
+        INTEGER :: index
+		REAL*8	:: Crmin
+		REAL*8	:: Crmax
+		REAL*8	:: A
+		REAL*8	:: B
+		REAL*8	:: C
+		REAL*8	:: D
+    END TYPE ReadLandUseProperties    
 !
 !
 !	Structures
@@ -57,9 +84,10 @@ module fslamGlobals_structures
 	REAL*8, PARAMETER :: PI		= 3.1415926d0
 	REAL*8, PARAMETER :: D_R	= 57.295780d0
 	REAL*8, PARAMETER :: R_D	= 0.0174532d0
-	REAL*8, PARAMETER :: grav		= 9.81d0
-    INTEGER, PARAMETER :: Dinf		= 1
-    INTEGER, PARAMETER :: D8		= 0
+	REAL*8, PARAMETER :: grav   = 9.81d0
+    REAL*8, PARAMETER :: densw  = 1000.d0
+    INTEGER, PARAMETER :: Dinf  = 1
+    INTEGER, PARAMETER :: D8    = 0
 !
 !
 

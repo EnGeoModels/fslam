@@ -47,13 +47,14 @@
 	<Files>
 		<Filter Name="data">
 		<File RelativePath=".\data\dem.asc"/>
-		<File RelativePath=".\data\hmtu.dat"/>
+		<File RelativePath=".\filenames.txt"/>
+		<File RelativePath=".\data\hmtu.csv"/>
 		<File RelativePath=".\data\input.dat"/>
 		<File RelativePath=".\data\lulc.asc"/>
 		<File RelativePath=".\data\rain_ant.asc"/>
 		<File RelativePath=".\data\rain_event.asc"/>
 		<File RelativePath=".\data\soil.asc"/>
-		<File RelativePath=".\data\soil.dat"/></Filter>
+		<File RelativePath=".\data\soil.csv"/></Filter>
 		<Filter Name="Header Files" Filter="fi;fd">
 		<File RelativePath=".\fslamGlobals_private.f90"/>
 		<File RelativePath=".\fslamGlobals_shared.f90"/>
@@ -76,6 +77,7 @@
 		<Filter Name="IO">
 		<File RelativePath=".\IO\GridOut.F90"/>
 		<File RelativePath=".\IO\LecDat.F90"/>
+		<File RelativePath=".\IO\LecFilenames.F90"/>
 		<File RelativePath=".\IO\LecLandUse.F90"/>
 		<File RelativePath=".\IO\LecLandUsesDat.F90"/>
 		<File RelativePath=".\IO\LecRainfall.F90"/>

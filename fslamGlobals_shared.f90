@@ -44,8 +44,6 @@ module fslamGlobals_shared
 	REAL*8  :: ycorner		!Coordenada X esquina superior izq.
 	REAL*8  :: dx			!Delta X
 	REAL*8  :: dy			!Delta Y
-	REAL*8	:: densw		!Water density
-    REAL*8	:: climateChangeFactor  !Scaling CC factor for 24hr precipitation
 !
 !
 !   Arrays
@@ -99,7 +97,16 @@ module fslamGlobals_shared
 !
 !   Texto
 	CHARACTER(LEN=14) dummy
-	CHARACTER(LEN=128) fname
+    CHARACTER(LEN=2048) fname
+	CHARACTER(LEN=2048) fname_topo
+	CHARACTER(LEN=2048) fname_Rainfall_ant
+	CHARACTER(LEN=2048) fname_Rainfall
+	CHARACTER(LEN=2048) fname_zones
+	CHARACTER(LEN=2048) fname_lulc
+	CHARACTER(LEN=2048) fname_input
+	CHARACTER(LEN=2048) fname_hmtu
+	CHARACTER(LEN=2048) fname_soil_dat    
+	CHARACTER(LEN=2048) fname_res
 !
 !
     INTERFACE

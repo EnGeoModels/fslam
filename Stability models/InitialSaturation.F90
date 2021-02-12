@@ -29,7 +29,7 @@ subroutine InitialSaturation()
 !
 !
     write(6,'("Initiating antecedent rainfall")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Initiating antecedent rainfall")')
 	close(100)    
 !
@@ -108,7 +108,7 @@ subroutine InitialSaturation()
 !
 !	Log file
     write(6,'("Computed probability of failure under antecedent rainfall")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Computed probability of failure under antecedent rainfall")')
 	close(100)
 !

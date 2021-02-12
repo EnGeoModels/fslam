@@ -88,12 +88,12 @@ subroutine RunOffCalc()
 !
 !	Log file
     write(6,'("Computed runoff")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Computed runoff")')
 	close(100)
 !
 !   Write runoff results
-    CALL WriteGrid(RunOff, './res/runoff.asc')
+    CALL WriteGrid(RunOff, 'runoff.asc')
 !
     DEALLOCATE(RunOff)
     DEALLOCATE(WeightedSlope)

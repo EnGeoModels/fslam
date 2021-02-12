@@ -32,10 +32,7 @@ program fslam
 	use fslamGlobals_private
 !
 	implicit double precision (a-h,o-z)
-!
-!	Log file
-	open(unit=100,file='./res/Log.txt',status='replace')
-	close(100)
+
 !
 !
 !	Printout
@@ -43,6 +40,12 @@ program fslam
 	write(6,'("Probabilistic Safety Factor model for shallow landslide")')
 	write(6,'("*******************************************************",/)')
 !
+!   Read input filenames
+    call LecFilenames()
+!
+!	Log file
+	open(unit=100,file=(trim(fname_res) // '\\Log.txt'),status='replace')
+	close(100)
 !
 !	Read input data
 	call LecDat()
@@ -132,7 +135,7 @@ program fslam
     call Hydrology()
 !    
 !   Write infiltration results
-    IF (iInfiltration .EQ. 1) CALL WriteGrid(Infiltration, './res/Infiltration.asc')
+    IF (iInfiltration .EQ. 1) CALL WriteGrid(Infiltration, 'Infiltration.asc')
 !
 !	Unconditionally instable cells
 	write(6,'("------------------------------------")')
@@ -150,11 +153,11 @@ program fslam
 	call InitialSaturation()
 !    
 !   Write initial saturation degree results
-    IF (iInitial_h_z .EQ. 1) CALL WriteGrid(h_z, './res/initial_h_z.asc')
+    IF (iInitial_h_z .EQ. 1) CALL WriteGrid(h_z, 'initial_h_z.asc')
 !    
 !   Write probability of failure under antecedent rainfall
-    IF (iPROB_failure_initial_cond .EQ. 1) CALL WriteGrid(PFGrid, './res/PROB_failure_initial_cond.asc')
-    IF (iSF_initial_cond .EQ. 1) CALL WriteGrid(FS_mu, './res/SF_initial_cond.asc')    
+    IF (iPROB_failure_initial_cond .EQ. 1) CALL WriteGrid(PFGrid, 'PROB_failure_initial_cond.asc')
+    IF (iSF_initial_cond .EQ. 1) CALL WriteGrid(FS_mu, 'SF_initial_cond.asc')    
 !
 !   Postevent failure probability
 	write(6,'("------------------------------------")')
@@ -162,8 +165,8 @@ program fslam
 	call FinalSaturation()
 !    
 !   Write post event results
-    IF (iPROB_failure_final_cond .EQ. 1) CALL WriteGrid(PFGrid, './res/PROB_failure_final_cond.asc')
-    IF (iSF_final_cond .EQ. 1) CALL WriteGrid(FS_mu, './res/SF_final_cond.asc')
+    IF (iPROB_failure_final_cond .EQ. 1) CALL WriteGrid(PFGrid, 'PROB_failure_final_cond.asc')
+    IF (iSF_final_cond .EQ. 1) CALL WriteGrid(FS_mu, 'SF_final_cond.asc')
 !
 !   Compute histogram
 	write(6,'("------------------------------------")')
@@ -188,9 +191,9 @@ program fslam
 	    call FsComponents()    
 !    
 !       Write FS components results
-        CALL WriteGrid(FS_C1, './res/SF_static.asc')
-        CALL WriteGrid(FS_C2, './res/SF_antecedent.asc')
-        CALL WriteGrid(FS_C3, './res/SF_event.asc')
+        CALL WriteGrid(FS_C1, 'SF_static.asc')
+        CALL WriteGrid(FS_C2, 'SF_antecedent.asc')
+        CALL WriteGrid(FS_C3, 'SF_event.asc')
 !
 !       Free memory
 	    DEALLOCATE(FS_C1)

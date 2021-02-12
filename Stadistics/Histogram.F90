@@ -25,7 +25,7 @@ subroutine Histogram(Filename)
     CHARACTER Filename*(*)
 !
 !   Output file
-    OPEN(20,FILE=Filename,ACTION="write",STATUS="replace",IOSTAT=istat)
+    OPEN(20,FILE=(fname_res // '\' // Filename),ACTION="write",STATUS="replace",IOSTAT=istat)
 !
 !   Control file
     IF (istat .ne. 0) THEN

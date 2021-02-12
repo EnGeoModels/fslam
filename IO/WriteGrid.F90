@@ -30,7 +30,7 @@ subroutine WriteGrid(GridData, Filename)
 	write(6,'("Raster output",A30,/)') Filename
 !   
 !	Escribimos resultados
-	open(unit=100,file=Filename,status='unknown',form='formatted')
+	open(unit=100,file=(trim(fname_res) // '\' // Filename),status='unknown',form='formatted')
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx

@@ -21,7 +21,7 @@ subroutine LecLandUse()
 !
 !
 !	Malla de sources
-	open(100,file='./data/lulc.asc',status='old')
+	open(100,file=fname_lulc,status='old')
 !
 !	Comprobamos que sea el mismo header que la topografia
 	read(100,*) dummy,imx			!numero nodos X

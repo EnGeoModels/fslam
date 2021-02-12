@@ -20,8 +20,8 @@ subroutine LecRainfall()
 	implicit double precision (a-h,o-z)
 !
 !
-!	Open topo file
-    open(100,file='./data/rain_event.asc',status='old')
+!	Open rainfall file
+    open(100,file=fname_Rainfall,status='old')
 !
 	write(6,'("Reading rainfall data",/)')
 !

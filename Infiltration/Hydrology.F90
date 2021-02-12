@@ -64,7 +64,7 @@ subroutine Hydrology()
 !
 !	Log file
     write(6,'("Computed effective infiltration")')
-	open(unit=100,file='./res/Log.txt',access='append')
+	open(unit=100,file=(trim(fname_res) // '\Log.txt'),access='append')
 	write(100,'("Computed effective infiltration")')
 	close(100)
 

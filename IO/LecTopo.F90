@@ -21,7 +21,7 @@ subroutine LecTopo()
 !
 !
 !	Open topo file
-    open(100,file='./data/dem.asc',status='old')
+    open(100,file=fname_topo,status='old')
 !
 	write(6,'("Reading topo data",/)')
 !
