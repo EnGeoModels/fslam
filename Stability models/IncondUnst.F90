@@ -67,7 +67,7 @@ subroutine IncondUnst()
     !$OMP END PARALLEL
 !    
 !   Write results
-    IF (iPROB_uncond_unst .EQ. 1) CALL WriteGrid(UncIns, './res/PROB_uncond_unst.asc')
+    IF (iPROB_uncond_unst .EQ. 1) CALL WriteGrid(UncIns, (trim(fname_res) // '/PROB_uncond_unst.asc'))
 !
 !
 !	Log file

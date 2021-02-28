@@ -25,7 +25,7 @@ subroutine LecZonesDat()
     TYPE(ReadSoilProperties) :: read_aux
 !
 !	Abrimos ficheros de entrada de datos de control
-	open(100,file='./data/soil.dat',status='old',form='formatted',err=1000)
+	open(100,file=fname_soil_dat,status='old',form='formatted',err=1000)
 !
 !	first & second line
 	read(100,*)	!index,Ks,Cmax,Cmin,phimax,phimin,h,dens,porosity,hsg

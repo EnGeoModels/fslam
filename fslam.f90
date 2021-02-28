@@ -171,7 +171,7 @@ program fslam
 !   Compute histogram
 	write(6,'("------------------------------------")')
 	write(6,'("Compute results histogram...",/)')
-	call Histogram('./res/PROB_FAILURE_HIST.csv')
+	call Histogram('PROB_FAILURE_HIST.csv')
 !
 !
 !   ---------------------
