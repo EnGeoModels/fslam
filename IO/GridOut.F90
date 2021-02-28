@@ -226,7 +226,7 @@ subroutine GridOut()
 !
 !	Formatos de Keyword
 1000 format(A14, I10)
-1001 format(A14, F14.6)
+1001 format(A14, F16.6)
 1002 format(F15.4, $)
 1003 format(/)    
 1004 format(F15.4)
