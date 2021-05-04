@@ -118,7 +118,8 @@ module fslamGlobals_shared
 !
 !
     INTERFACE
-        SUBROUTINE Histogram(Filename)
+        SUBROUTINE Histogram(GridData, Filename)
+            REAL*8, INTENT(IN)   :: GridData(:,:)
             CHARACTER Filename*(*)
         END SUBROUTINE Histogram
     END INTERFACE   

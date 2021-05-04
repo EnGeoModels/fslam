@@ -65,10 +65,6 @@ subroutine IncondUnst()
 !    
     !$OMP END DO NOWAIT
     !$OMP END PARALLEL
-!    
-!   Write results
-    IF (iPROB_uncond_unst .EQ. 1) CALL WriteGrid(UncIns, 'PROB_uncond_unst.asc')
-!
 !
 !	Log file
     write(6,'("Computed unconditionally unstable cells probability")')
