@@ -22,12 +22,11 @@ subroutine WriteGrid(GridData, Filename)
 !   Variables
     REAL*8 GridData(:,:)
     CHARACTER Filename*(*)
-    
 !
 !
 !
-!	Salida de resultados velocidad mediante GRID Arcview
-	write(6,'("Raster output",A30,/)') Filename
+!	Write raster in ASCII format
+	write(6,'("Raster output (ASCII): ",A30,/)') Filename
 !   
 !	Escribimos resultados
 	open(unit=100,file=(trim(fname_res) // '\' // Filename),status='unknown',form='formatted')

@@ -7,7 +7,7 @@
 !  PURPOSE:  Compute results histogram
 !
 !****************************************************************************
-subroutine Histogram(Filename)
+subroutine Histogram(GridData, Filename)
 !
 !
 !	Variables globales
@@ -19,10 +19,14 @@ subroutine Histogram(Filename)
 	implicit double precision (a-h,o-z)
 !
 !   Variables
+    REAL*8 GridData(:,:)
     integer :: i
     real*8  :: numNullCells
     real*8  :: numNotNullCells  
     CHARACTER Filename*(*)
+!
+!	Write PDF in CSV format
+	write(6,'("Histogram output (CSV): ",A30,/)') Filename
 !
 !   Output file
     OPEN(20,FILE=(trim(fname_res) // '\' // Filename),ACTION="write",STATUS="replace",IOSTAT=istat)
@@ -38,18 +42,18 @@ subroutine Histogram(Filename)
     WRITE(20,'("value,cdf")')
 !
 !   Not NULL cells
-    numNullCells = COUNT(PFGrid .EQ. nodata)
+    numNullCells = COUNT(GridData .EQ. nodata)
     numNotNullCells = my*mx - numNullCells
 !
 !   Convert nodata cells to 0
-    PFGrid = -(PFGrid .NE. nodata) * PFGrid
+    GridData = -(GridData .NE. nodata) * GridData
 !
 !   Stable cells
-    write(20, '(f10.3,",",f10.4)' ) 0.d0, (COUNT( PFGrid <= 0.d0 ) - numNullCells) / numNotNullCells
+    write(20, '(f10.3,",",f10.4)' ) 0.d0, (COUNT( GridData <= 0.d0 ) - numNullCells) / numNotNullCells
 !
 !   Main loop
     do i = 1,100
-        write(20, '(f10.3,",",f10.4)' ) DBLE(i)/100.d0, (COUNT( PFGrid <= (DBLE(i)/100.d0) ) - numNullCells) / numNotNullCells
+        write(20, '(f10.3,",",f10.4)' ) DBLE(i)/100.d0, (COUNT( GridData <= (DBLE(i)/100.d0) ) - numNullCells) / numNotNullCells
     enddo
 !
     close(20)

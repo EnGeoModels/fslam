@@ -42,15 +42,16 @@ subroutine FsComponents()
                 ksh = GaussKs(iZone)%mean
                 Porosity = GaussPor(iZone)%mean
                 Cohesion = GaussC(iZone)%mean + GaussCr(iLandUse)%mean
+                AntRainInten = WeightedRainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
 !
 !               First component
                 FS_C1(i,j) =  DMIN1(Cohesion / (Zmax * DCOS(Slope) * denss * grav * DSIN(Slope)) +  DTAN(phi) / DTAN(Slope), 10.d0)
 !
 !               Second component
-                FS_C2(i,j) = -DMIN1(DMIN1(Area / (ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope)), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
+                FS_C2(i,j) = -DMIN1(DMIN1(AntRainInten * Area / (ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope)), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
 !
 !               Third component
-                FS_C3(i,j) = -DMIN1(DMIN1(1.d0 / (Porosity * Zmax), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
+                FS_C3(i,j) = -DMIN1(DMIN1((Infiltration(i,j) / 1000.d0) * 1.d0 / (Porosity * Zmax), 1.d0) * (densw / denss) * (DTAN(phi) / DTAN(Slope)), 10.d0)
 !            
             ELSE
                 FS_C1(i,j) = nodata

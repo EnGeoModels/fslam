@@ -141,11 +141,23 @@ program fslam
 	write(6,'("------------------------------------")')
 	write(6,'("Inconditionally unstable cells calculation...",/)')
 	call IncondUnst()
+!    
+!   Write UU results
+    if (iPROB_uncond_unst .EQ. 1) then
+        call WriteGrid(UncIns, 'PROB_uncond_unst.asc')
+        call Histogram(UncIns, 'PROB_uncond_unst_HIST.csv')
+    endif
 !
 !	Unconditionally stable cells
 	write(6,'("------------------------------------")')
 	write(6,'("Inconditionally stable cells calculation...",/)')
 	call IncondSta()
+!    
+!   Write US results
+    if (iPROB_uncond_stable .EQ. 1) then
+        call WriteGrid(UncEst, 'PROB_uncond_stable.asc')
+        call Histogram(UncEst, 'PROB_uncond_stable_HIST.csv')
+    endif
 !
 !   Antecedent rainfall failure probability
 	write(6,'("------------------------------------")')
@@ -156,8 +168,15 @@ program fslam
     IF (iInitial_h_z .EQ. 1) CALL WriteGrid(h_z, 'initial_h_z.asc')
 !    
 !   Write probability of failure under antecedent rainfall
-    IF (iPROB_failure_initial_cond .EQ. 1) CALL WriteGrid(PFGrid, 'PROB_failure_initial_cond.asc')
-    IF (iSF_initial_cond .EQ. 1) CALL WriteGrid(FS_mu, 'SF_initial_cond.asc')    
+    if (iPROB_failure_initial_cond .EQ. 1) then
+        call WriteGrid(PFGrid, 'PROB_failure_initial_cond.asc')
+        call Histogram(PFGrid, 'PROB_failure_initial_cond_HIST.csv')
+    endif
+!
+    if (iSF_initial_cond .EQ. 1) then
+        call WriteGrid(FS_mu, 'SF_initial_cond.asc')    
+        call Histogram(FS_mu, 'SF_initial_cond_HIST.csv')
+    endif
 !
 !   Postevent failure probability
 	write(6,'("------------------------------------")')
@@ -165,13 +184,15 @@ program fslam
 	call FinalSaturation()
 !    
 !   Write post event results
-    IF (iPROB_failure_final_cond .EQ. 1) CALL WriteGrid(PFGrid, 'PROB_failure_final_cond.asc')
-    IF (iSF_final_cond .EQ. 1) CALL WriteGrid(FS_mu, 'SF_final_cond.asc')
-!
-!   Compute histogram
-	write(6,'("------------------------------------")')
-	write(6,'("Compute results histogram...",/)')
-	call Histogram('PROB_FAILURE_HIST.csv')
+    if (iPROB_failure_final_cond .EQ. 1) then
+        call WriteGrid(PFGrid, 'PROB_failure_final_cond.asc')
+        call Histogram(PFGrid, 'PROB_failure_final_cond_HIST.csv')
+    endif
+!        
+    if (iSF_final_cond .EQ. 1) then
+        call WriteGrid(FS_mu, 'SF_final_cond.asc')
+        call Histogram(FS_mu, 'SF_final_cond_HIST.csv')
+    endif
 !
 !
 !   ---------------------

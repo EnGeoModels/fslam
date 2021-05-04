@@ -85,9 +85,6 @@ subroutine IncondSta()
 !    
     !$OMP END DO NOWAIT
     !$OMP END PARALLEL
-!    
-!   Write results
-    IF (iPROB_uncond_stable .EQ. 1) CALL WriteGrid(UncEst, 'PROB_uncond_stable.asc')
 !
 !	Log file
     write(6,'("Computed unconditionally stable cells probability")')
