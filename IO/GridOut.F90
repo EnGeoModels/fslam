@@ -27,7 +27,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/topo.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
@@ -56,7 +56,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/fill.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
@@ -85,7 +85,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/slopes.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
@@ -114,7 +114,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/cumflow.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
@@ -143,7 +143,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/rain_ant_averaged.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
@@ -172,7 +172,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/rain_averaged.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
@@ -201,7 +201,7 @@ subroutine GridOut()
 !	Escribimos resultados
     fname = (trim(fname_res) // '/CN_averaged.asc')
 !
-	open(unit=100,file=fname,status='unknown',form='formatted')
+	open(unit=100,file=fname,status='unknown',form='formatted',buffered='YES',buffercount=10,blocksize=32768)
 !
 !	Keywords de la GRID
 	write(100,1000) 'ncols         ', mx
