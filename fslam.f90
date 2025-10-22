@@ -67,10 +67,6 @@ program fslam
 	write(6,'("Compute slopes...")')
 	call SlopeCalc()
 !
-!	Compute cum area
-	write(6,'("Compute flow accumulation...",/)')
-	call CumFlowCalc(topo, cumflow, Dinf)
-!
 !	Read rainfall raster
 	write(6,'("------------------------------------")')
     write(6,'("Read rain_event.asc...",/)')
@@ -98,6 +94,10 @@ program fslam
 !	Read soil data
 	write(6,'("Read land use data...",/)')
 	call LecLandUsesDat()
+!
+!	Compute cum area
+	write(6,'("Compute flow accumulation...",/)')
+	call CumFlowCalc(topo, cumflow, Dinf)
 !
 !	Compute Curve Number
 	write(6,'("------------------------------------")')
@@ -193,6 +193,9 @@ program fslam
         call WriteGrid(FS_mu, 'SF_final_cond.asc')
         call Histogram(FS_mu, 'SF_final_cond_HIST.csv')
     endif
+!    
+!   Write he_z results
+    IF (iFinal_h_z .EQ. 1) CALL WriteGrid(h_wt, 'final_h_z.asc')
 !
 !
 !   ---------------------

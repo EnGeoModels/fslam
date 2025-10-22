@@ -22,6 +22,7 @@ module fslamGlobals_structures
         REAL*8  :: porositymin
         REAL*8  :: porositymax
         character(len=1) :: hsg
+        REAL*8  :: accum_length
     END TYPE SoilProperties
 !
 !
@@ -37,6 +38,7 @@ module fslamGlobals_structures
 		REAL*8	:: dens
         REAL*8  :: rporosity
         character(len=1) :: hsg
+        REAL*8  :: accum_length
     END TYPE ReadSoilProperties   
 !
 !

@@ -49,6 +49,8 @@ subroutine LecDat()
 !
     read(100,*) iRunoff                 !Enable runoff module
 !
+    read(100,*) iFinal_h_z              !Final saturation degree result
+!
 !	Cerramos el fichero
     close(100)
 !

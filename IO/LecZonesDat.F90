@@ -51,6 +51,7 @@ subroutine LecZonesDat()
         Soils(read_aux%index)%porositymax = read_aux%rporosity
         Soils(read_aux%index)%porositymin = read_aux%rporosity
         Soils(read_aux%index)%hsg = read_aux%hsg
+        Soils(read_aux%index)%accum_length = read_aux%accum_length
 !
 	enddo
 !

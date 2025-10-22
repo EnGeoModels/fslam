@@ -25,7 +25,7 @@ subroutine CumFlowCalc(inGridData, outGridData, algorithm)
 	integer algorithm
 !
 !   Allocate memory for auxiliar raster
-   	ALLOCATE(auxcumflow(mx,my,0:7))	        !Auxiliar grid
+   	ALLOCATE(auxcumflow(mx,my,0:8))	        !Auxiliar grid
 !
 !	Matrix initialization
 	outGridData = nodata
@@ -43,10 +43,39 @@ subroutine CumFlowCalc(inGridData, outGridData, algorithm)
 	end do
 !
 	do j = 2, (my-1)
+        
+        
+write(6,'("Row: ",I10,/)') j
+
+
+        
+        
 		do i = 2, (mx-1)
-			call getFlow(i, j, inGridData, outGridData)
+!
+!           Static cell values
+            iZone = zones(i,j)
+			iLandUse = lulc(i,j)
+!
+!           Check null
+            if ((iZone .NE. INT(nodata)) .AND. (iLandUse .NE. INT(nodata))) then
+!
+!				Get the soil group
+				accum_length = Soils(iZone)%accum_length
+                n_accum_cells = accum_length / dx
+!
+!               Compute limited accum flow
+    			call getFlowLim(i, j, inGridData, auxcumflow(:,:,8), 1, n_accum_cells)
+!
+!               Update result
+                outGridData(i,j) = auxcumflow(i,j,8)
+                auxcumflow(MAX(i-n_accum_cells,1):MIN(i+n_accum_cells,mx-1),MAX(j-n_accum_cells,1):MIN(j+n_accum_cells,my-1),8) = nodata
+
+!                
+            endif
+!
 		enddo
-	end do
+    end do
+!
 !
 !	From cells number to area
 	do j = 2, (my-1)
@@ -206,7 +235,7 @@ end function
 !
 !  FUNCTION: getAspect
 !
-!  PURPOSE:  Calculate girs aspect.
+!  PURPOSE:  Calculate topo raster aspect.
 !
 !****************************************************************************
 double precision function getAspect(ix, jy, inGridData)
@@ -387,3 +416,77 @@ recursive subroutine getFlow(ix, jy, inGridData, outGridData)
 	endif
 !
 end subroutine
+!
+!
+!****************************************************************************
+!
+!  SUBROUTINE: getFlowLim
+!
+!  PURPOSE:  Cumulate flows with limited propagation.
+!
+!****************************************************************************
+recursive subroutine getFlowLim(ix, jy, inGridData, outGridData, num_rec, n_accum_cells)
+!
+!
+!
+!	Variables globales
+	use fslamGlobals_structures
+	use fslamGlobals_shared
+	use fslamGlobals_private
+!
+!
+	implicit double precision (a-h,o-z)
+!
+!   Variables
+	real*8 outGridData(mx,my)
+    real*8 inGridData(mx,my)
+!	
+	integer,dimension(0:7) :: iOffsetX
+	integer,dimension(0:7) :: iOffsetY
+!
+	iOffsetX = (/  0,  1,  1,  1,  0, -1, -1, -1/)
+	iOffsetY = (/  1,  1,  0, -1, -1, -1,  0,  1/)
+!
+
+	if (outGridData(ix, jy) .NE. nodata) then
+		return
+	endif
+!
+	dValue = inGridData(ix, jy)
+!		
+	if(dValue .NE. nodata) then
+!		
+		outGridData(ix, jy) = 1.d0
+!
+		j = 4
+		do i = 0, 7
+!
+			iix	= ix + iOffsetX(i);
+			jjy	= jy + iOffsetY(i);
+!
+			dValue = inGridData(iix, jjy);
+!
+			if(dValue .NE. nodata) then
+!				
+				dFlow = auxcumflow(iix,jjy,j)
+!
+				if((dFlow .NE. nodata) .AND. (num_rec .LT. n_accum_cells)) then
+					call getFlowLim(iix,jjy, inGridData, outGridData, num_rec + 1, n_accum_cells)
+					dValue =  outGridData(iix, jjy) * dFlow
+					dValue2 =  outGridData(ix, jy)
+					outGridData(ix, jy) = dValue + dValue2
+				endif
+!
+			endif
+!				
+			j = MOD((j+1),8)
+!
+		enddo
+!			
+	endif
+!
+    end subroutine
+    
+    
+    
+    

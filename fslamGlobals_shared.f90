@@ -33,6 +33,7 @@ module fslamGlobals_shared
     INTEGER :: iSF_initial_cond             !Create SF_initial_cond.asc raster
     INTEGER :: iSF_final_cond               !Create SF_final_cond.asc raster
     INTEGER :: iRunoff      !Compute runoff
+    INTEGER :: iFinal_h_z   !Final saturation degree result writing
 !
 !
 !   Booleanas
