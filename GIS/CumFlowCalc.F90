@@ -40,16 +40,13 @@ subroutine CumFlowCalc(inGridData, outGridData, algorithm)
                 call doD8(i, j, inGridData)
             endif
 		enddo
-	end do
+    end do
+!
 !
 	do j = 2, (my-1)
-        
-        
-write(6,'("Row: ",I10,/)') j
-
-
-        
-        
+!       
+!       write(6,'("Row: ",I10,/)') j
+!
 		do i = 2, (mx-1)
 !
 !           Static cell values
@@ -68,8 +65,9 @@ write(6,'("Row: ",I10,/)') j
 !
 !               Update result
                 outGridData(i,j) = auxcumflow(i,j,8)
+!
+!               Clear beyond limits
                 auxcumflow(MAX(i-n_accum_cells,1):MIN(i+n_accum_cells,mx-1),MAX(j-n_accum_cells,1):MIN(j+n_accum_cells,my-1),8) = nodata
-
 !                
             endif
 !

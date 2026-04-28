@@ -43,6 +43,8 @@ subroutine LecFilenames()
 !
     read(100,'(A)') fname_hmtu          !hmtu filename
 !
+    read(100,'(A)') fname_z             !z soil thickness filename
+!
     read(100,'(A)') fname_res           !Results folder
 !
 !	Cerramos el fichero

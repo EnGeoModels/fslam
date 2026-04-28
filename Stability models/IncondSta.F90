@@ -32,8 +32,8 @@ subroutine IncondSta()
     !$OMP PARALLEL DEFAULT(SHARED) PRIVATE(i,j) 
     !$OMP DO SCHEDULE(DYNAMIC)
 !
-	DO j=1,my
-		DO i=1,mx
+	do j=1,my
+		do i=1,mx
 !
 !			Static cell values
 			iZone = zones(i,j)
@@ -41,7 +41,13 @@ subroutine IncondSta()
 !           Check nodata
             IF (iZone .NE. INT(nodata)) THEN
 !
-                Zmax = Gaussh(iZone)%mean
+!                
+!               Get soil thickness
+                if (iRasterZ .EQ. 1) then
+                    Zmax = Z_soil(i,j)
+                else
+                    Zmax = Gaussh(iZone)%mean
+                endif
 !
 !               Saturated soil
                 h_wt(i,j) = Zmax

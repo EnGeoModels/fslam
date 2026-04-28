@@ -51,6 +51,7 @@
 		<File RelativePath=".\data\hmtu.csv"/>
 		<File RelativePath=".\data\input.dat"/>
 		<File RelativePath=".\data\lulc.asc"/>
+		<File RelativePath=".\data\z.asc"/>
 		<File RelativePath=".\data\rain_ant.asc"/>
 		<File RelativePath=".\data\rain_event.asc"/>
 		<File RelativePath=".\data\soil.asc"/>
@@ -83,6 +84,7 @@
 		<File RelativePath=".\IO\LecRainfall.F90"/>
 		<File RelativePath=".\IO\LecRainfallAnt.F90"/>
 		<File RelativePath=".\IO\LecTopo.F90"/>
+		<File RelativePath=".\IO\LecZ.F90"/>
 		<File RelativePath=".\IO\LecZones.F90"/>
 		<File RelativePath=".\IO\LecZonesDat.F90"/>
 		<File RelativePath=".\IO\WriteGrid.F90"/></Filter>

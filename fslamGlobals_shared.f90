@@ -34,6 +34,7 @@ module fslamGlobals_shared
     INTEGER :: iSF_final_cond               !Create SF_final_cond.asc raster
     INTEGER :: iRunoff      !Compute runoff
     INTEGER :: iFinal_h_z   !Final saturation degree result writing
+    INTEGER :: iRasterZ     !Use a raster for soil thickness Z
 !
 !
 !   Booleanas
@@ -81,6 +82,7 @@ module fslamGlobals_shared
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: WeightedSlope            !Average value of slope in cell contributing area 
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: longestPath              !Longests upstream path
     REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: maxElev                  !Maximum elevation of stream
+    REAL*8,   DIMENSION(:,:),		ALLOCATABLE :: Z_soil                   !Soil thickness    
 !
 !
 !	Structures
@@ -106,7 +108,8 @@ module fslamGlobals_shared
 	CHARACTER(LEN=2048) fname_lulc
 	CHARACTER(LEN=2048) fname_input
 	CHARACTER(LEN=2048) fname_hmtu
-	CHARACTER(LEN=2048) fname_soil_dat    
+	CHARACTER(LEN=2048) fname_soil_dat
+    CHARACTER(LEN=2048) fname_z
 	CHARACTER(LEN=2048) fname_res
 !
 !

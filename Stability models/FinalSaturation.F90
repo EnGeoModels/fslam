@@ -48,7 +48,13 @@ subroutine FinalSaturation()
 !
 !               Get porosity
                 Porosity = GaussPor(iZone)%mean
-                Zmax = Gaussh(iZone)%mean
+!                
+!               Get soil thickness
+                if (iRasterZ .EQ. 1) then
+                    Zmax = Z_soil(i,j)
+                else
+                    Zmax = Gaussh(iZone)%mean
+                endif
 !            
 !			    Water table depth rising (rainfall in mm)
     		    h_wt(i,j) = DMIN1(h_wt(i,j) + Infiltration(i,j) / 1000.d0 / Porosity, Zmax)

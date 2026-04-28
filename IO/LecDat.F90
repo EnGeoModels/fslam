@@ -51,6 +51,8 @@ subroutine LecDat()
 !
     read(100,*) iFinal_h_z              !Final saturation degree result
 !
+    read(100,*) iRasterZ                !Soil thickness raster
+!
 !	Cerramos el fichero
     close(100)
 !

@@ -42,6 +42,13 @@ subroutine InitialSaturation()
 		do i=1,mx
 !
 !
+            
+            
+            IF ((i .EQ. 1000) .AND. (j .EQ. 100)) THEN
+            continue
+            ENDIF
+            
+            
 !           Static cell values
 			iZone = zones(i,j)
 			iLandUse = lulc(i,j)            
@@ -50,11 +57,19 @@ subroutine InitialSaturation()
             IF ((iZone .NE. INT(nodata)) .AND. (iLandUse .NE. INT(nodata))) THEN
 !            
                 Slope = slopeGrid(i,j)
-                Zmax = Gaussh(iZone)%mean
+!                
+!               Get soil thickness
+                if (iRasterZ .EQ. 1) then
+                    Zmax = Z_soil(i,j)
+                else
+                    Zmax = Gaussh(iZone)%mean
+                endif
+!
                 denss = GaussDens(iZone)%mean
                 Area = cumflow(i,j)
                 ksh = GaussKs(iZone)%mean
                 AntRainInten = WeightedRainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
+                !AntRainInten = Rainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
 !
 !			    Infinite slope stability
 			    h_z(i,j) = DMIN1(AntRainInten * Area / ( ksh * Zmax * dx * DSIN(Slope) * DCOS(Slope) ), 1.d0)

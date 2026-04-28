@@ -39,7 +39,14 @@ subroutine UpdateFsGaussian()
             IF ((iZone .NE. INT(nodata)) .AND. (iLandUse .NE. INT(nodata))) THEN
 !            
 			    Slope = slopeGrid(i,j)
-                Zmax = Gaussh(iZone)%mean
+!                
+!               Get soil thickness
+                if (iRasterZ .EQ. 1) then
+                    Zmax = Z_soil(i,j)
+                else
+                    Zmax = Gaussh(iZone)%mean
+                endif
+!
                 denss = GaussDens(iZone)%mean
                 phi = DATAN(GaussTanPhi(iZone)%mean)
                 Cohesion = GaussC(iZone)%mean + GaussCr(iLandUse)%mean 

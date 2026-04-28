@@ -95,6 +95,12 @@ program fslam
 	write(6,'("Read land use data...",/)')
 	call LecLandUsesDat()
 !
+!   Read soil thickness raster
+    if (iRasterZ .EQ. 1) then
+        write(6,'("Read soil thickness data...",/)')
+    	call LecZ()
+    endif    
+!
 !	Compute cum area
 	write(6,'("Compute flow accumulation...",/)')
 	call CumFlowCalc(topo, cumflow, Dinf)
@@ -117,7 +123,7 @@ program fslam
 	call WeightedCumFlowCalc(topo, CNGrid, WeightedCN, Dinf, cumflow)
 !
 !	Geoprocesses results output Arcview
-    if (iOutput .EQ. 1) THEN
+    if (iOutput .EQ. 1) then
 	    write(6,'(/,"GIS Results output:",/)')
 	    call GridOut()
     else
@@ -295,6 +301,10 @@ program fslam
 	DEALLOCATE(CNGrid)    
     DEALLOCATE(WeightedRainfall)    
     DEALLOCATE(WeightedCN)
+!
+    if (iRasterZ .EQ. 1) then
+            DEALLOCATE(Z_soil)
+    endif
 !
 !
 !

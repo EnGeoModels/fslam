@@ -35,7 +35,14 @@ subroutine FsComponents()
             IF ((iZone .NE. INT(nodata)) .AND. (iLandUse .NE. INT(nodata))) THEN
 !            
 			    Slope = slopeGrid(i,j)
-                Zmax = Gaussh(iZone)%mean
+!                
+!               Get soil thickness
+                if (iRasterZ .EQ. 1) then
+                    Zmax = Z_soil(i,j)
+                else
+                    Zmax = Gaussh(iZone)%mean
+                endif
+!
                 denss = GaussDens(iZone)%mean
                 phi = DATAN(GaussTanPhi(iZone)%mean)
                 Area = cumflow(i,j)
@@ -43,6 +50,7 @@ subroutine FsComponents()
                 Porosity = GaussPor(iZone)%mean
                 Cohesion = GaussC(iZone)%mean + GaussCr(iLandUse)%mean
                 AntRainInten = WeightedRainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
+                !AntRainInten = Rainfall_ant(i,j) / 1000.d0 / (24.d0 * 3600.d0)
 !
 !               First component
                 FS_C1(i,j) =  DMIN1(Cohesion / (Zmax * DCOS(Slope) * denss * grav * DSIN(Slope)) +  DTAN(phi) / DTAN(Slope), 10.d0)

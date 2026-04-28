@@ -67,6 +67,11 @@ subroutine LecTopo()
     ALLOCATE(WeightedCN(mx,my))             !Average value of CN in cell contributing area
 !
 !
+    if (iRasterZ .EQ. 1) then
+            ALLOCATE(Z_soil(mx,my))                    !Soil thickness raster
+    endif
+!
+!
 !	Leemos la malla de terreno
     do j = 1, my
         read(100,*) (topoIni(i,j), i =1, mx)
